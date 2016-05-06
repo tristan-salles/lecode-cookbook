@@ -1,0 +1,212 @@
+<!-- Definition of sediment types and characteristics 
+	 as well as initial deposit layer composition. 
+-->
+<struct-sediments>
+	
+	<!-- Declaration of material classes present in the simulated domain. 
+		The definition of the material classes starts with the declaration of the
+	 	siliciclastics, then the carbonates and finally the organics. 
+	 	
+	 	Note: The total number of materials is equal to the sum of siliclastics, carbonates
+	 		and organics. It is not required to set some materials for each type but it is 
+	 		required to have at least one material defined. 
+	 		
+	 	Note: The total number of materials is set to 10 in the default version of LECODE. 
+	 		If the simulation requires more grain sizes you will need to change the default
+	 		value (called max_grn) within LECODE and recompile it. 
+	 	
+	 	Note: Each 3 types of materials needs to be organise by decreasing diametre size. 
+	-->
+	<Materials>
+		
+		<!-- Number of siliclastics defined for this simulation 
+		-->
+		<NbSiliciclastics>1</NbSiliciclastics>
+		
+		<!-- Number of carbonates defined for this simulation 
+		-->
+		<NbCarbonates>1</NbCarbonates>
+		
+		<!-- Number of organics defined for this simulation 
+		-->
+		<NbOrganics>1</NbOrganics>
+		
+		<!-- Minimum slope of deposited sediment taken into account for slope diffusion
+		calculation. Below this threshold value, slope diffusion is not computed. 
+		-->
+		<MinSlope>0.00001</MinSlope>
+		
+		<!-- Collection of siliciclastics classes. 
+			
+			Note: it is possible to defined two classes with the same parameters as long
+				as they have a different name. This could be usefull when looking at 
+				provenance problems.
+				
+			Note: This element is optional.
+		-->
+		<si>
+			<!-- Name of the considered siliclastic class.
+				
+				Note: chosen names are not predefined and could be anything but should differ 
+					between each class. 
+					
+				Note: in case the <HemipelagicRates> element has been set, it is required for 
+				 	one of the siliclastic class to have its name set to Hemi. 
+			-->
+			<MaterialName>slop_grav</MaterialName>
+			
+			<!-- Grain size diameter of the considered siliclastic class in millimetres. 
+			-->
+			<Diameter unit="mm">0.5</Diameter>
+			
+			<!-- Density of the considered siliclastic class in kg/m3. 
+			-->
+			<Density unit="kg/m3">2620.0</Density>
+			
+			<!-- Angle of repose of the considered siliclastic class when deposited in
+				marine environment. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeMarine>0.007</SlopeMarine>
+			
+			<!-- Angle of repose of the considered siliclastic class when deposited in
+				above sea level. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeAerial>0.00016</SlopeAerial>
+		</si>
+		
+		<!-- Collection of carbonates classes. 
+		
+			Note: This element is optional.
+		-->
+		<carb>
+			<!-- Name of the considered carbonate class.
+				
+				Note: chosen names are not predefined and could be anything but should differ 
+					between each class. 
+			-->
+			<MaterialName>car_grav</MaterialName>
+			
+			<!-- Grain size diameter of the considered carbonates class in millimetres. 
+			-->
+			<Diameter unit="mm">0.5</Diameter>
+			
+			<!-- Density of the considered carbonates class in kg/m3. 
+			-->
+			<Density unit="kg/m3">2600.0</Density>
+			
+			<!-- Angle of repose of the considered carbonates class when deposited in
+				marine environment. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeMarine>0.0141</SlopeMarine> 
+			
+			<!-- Angle of repose of the considered carbonates class when deposited in
+				above sea level. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeAerial>0.002</SlopeAerial> 
+			
+		</carb>
+		
+		<!-- Collection of organics classes. 
+		
+			Note: This element is optional.
+		-->
+		<org>
+			<!-- Name of the considered organic class.
+				
+				Note: chosen names are not predefined and could be anything but should differ 
+					between each class. 
+			-->
+			<MaterialName>org_coal</MaterialName>
+			
+			<!-- Grain size diameter of the considered organic class in millimetres. 
+			-->
+			<Diameter unit="mm">0.05</Diameter>
+			
+			<!-- Density of the considered organic class in kg/m3. 
+			-->
+			<Density unit="kg/m3">2400.0</Density>
+			
+			<!-- Angle of repose of the considered organic class when deposited in
+				marine environment. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeMarine>0.05</SlopeMarine> 
+			
+			<!-- Angle of repose of the considered organic class when deposited in
+				above sea level. This angle is used during the diffusion process to 
+				define the stability of the newly deposited sediments.
+			-->
+			<SlopeAerial>0.002</SlopeAerial> 
+			
+		</org>
+		
+	</Materials>
+
+	<!-- Declaration of initial deposit layers prior to the simulation starting time.
+		This element allows the user to start with a predefined sediment architecture.
+		This architecture could be composed of several layers with various thicknesses
+		througout the spatial area making it possible to set up initially complex 
+		geometries. 
+		
+		Note: if your simulation starts without any predefined sedimentary layers, you will
+			not be able to erode the basement and it is in any case required to set up a initial
+			layer of null thicknesses.
+		
+		Note: in case of a restarted simulation the initial deposition layer declaration
+			should not be changed from the original definition 
+	
+	-->
+	<Init_deposit>
+		
+		<!-- Number of initial deposit layers defined. 
+		-->
+		<LayersNb>1</LayersNb>
+		
+		<!-- Declaration of a specific sedimentary layers. 
+			
+			Note: the layers will be arranged one over the other based on how they were
+				declared. Which means that the first <dep> layer will be the bottom one 
+				and the last one the top one.
+			
+			Note: the layer will add up to each others starting from the basement topography
+				defined in the <StrataGrid> element.
+		-->
+		<dep>
+			<!-- Name of a specific deposit layer file and its path.
+				The path is from the main input file location. 
+				This ASCII file provides for each line the following information:
+					- node IDs
+					- thickness of first defined material classes on this node in metres
+					- thickness of second defined material classes on this node in metres
+						:	:	:	:	:	:	:	:	:	:	:	:	:	:	:	:	
+						:	:	:	:	:	:	:	:	:	:	:	:	:	:	:	:	
+					- thickness of last defined material classes on this node in metres
+					- sedimentary layer hardness
+				
+				Note: the hardness of a given sedimentary layer is a parameter (always positive) 
+					which defines how easy a specific layer can be eroded. A value of 1 or below 
+					means that the layer erodability is high for this node whereas a value of 10 
+					or above will means that the layer erodability is low and can be seen as a
+					cemented rock.
+					
+				Note: In case a particular sediment is not present its thickness needs to be set 
+					to 0.0.
+				
+				Note: the nodes have been defined in increasing order starting from the Sout-West
+				 	corner and going first along the X axis (West to East)
+				
+				Attention: this is a requirement to defined the various sediment class thicknesses
+					by following the same order as the one used in the definition of the different
+					materials. If not the initial sedimentary layers will not be set properly.
+			-->
+			<FileName>data/gbr_N.dep</FileName>
+			
+		</dep>
+		
+	</Init_deposit>
+	
+</struct-sediments>	

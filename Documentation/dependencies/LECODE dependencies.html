@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta name="exporter-version" content="Evernote Mac 5.5.1 (402628)"/><meta name="author" content="sallestaing"/><meta name="created" content="2014-01-30 23:31:15 +0000"/><meta name="updated" content="2014-05-19 21:46:55 +0000"/><title>LECODE dependencies</title></head><body style="word-wrap: break-word; -webkit-nbsp-mode: space; -webkit-line-break: after-white-space;">
+<div>
+<h2 style="padding: 0px 0px 5px; font-family: 'Trebuchet MS', Arial, sans-serif; color: rgb(238, 137, 7); font-weight: normal; background-color: rgb(255, 255, 255); font-size: 11px;">This note presents how to install the required dependencies to run LECODE. Most of the guide refers to installation on Mac OSX however the process is quite similar for installation on Linux system.</h2>
+<div style="text-align: center; font-size: 9px;"><font color="#009051"><b style="font-size: 20px;">GENERAL DEPENDENCIES                                   </b></font></div>
+<div style="text-align: right; font-size: 9px;"><font color="#009051"><b style="font-size: 20px;"><span><img src="LECODE%20dependencies.resources/Screen%20Shot%202014-04-03%20at%207.14.17%20pm.png" height="132" width="79"/></span></b></font></div>
+<hr/>
+<span style="border-collapse: separate; font-family: Helvetica; border-spacing: 0px; font-size: 11px;"><strong><span style="color: rgb(255, 35, 35);"><br clear="none"/></span></strong></span></div>
+<div style="text-align: right; font-size: 11px;"><span style="font-weight: bold;"><strong><span style="font-size: 16px;"><font color="#FF7E79">GNU compilers</font><font color="#FF2323"> </font></span></strong></span></div>
+<div style="text-align: right; font-size: 11px;"><a shape="rect" href="http://hpc.sourceforge.net/" style="font-size: 9px;"><font color="#0096FF">http://hpc.sourceforge.net/</font></a></div>
+<div style="font-size: 11px;"><br clear="none"/></div>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">unzip gcc-xxx.tar.gz</span></span></div>
+<span style="font-size: 9px;"> </span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> sudo mv</span><span style="font-family: 'Andale Mono';"> gcc-xxx.tar /usr/local</span></span></div>
+<div><span style="font-family: 'Andale Mono'; font-size: 9px;">$&gt; cd /usr/local<br clear="none"/></span>
+<div style="font-size: 9px;"><span style="font-family: Times;"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> sudo </span><span style="font-family: 'Andale Mono';">tar -xvf gcc-xxx.tar</span></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt; cd /usr/local/bin<br clear="none"/></span>
+<div><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> sudo ln -s /usr/local/gcc-xxx/bin/gcc gcc</span></span></div>
+<span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">sudo </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">ln -s /usr/local/gcc-xxx/bin/gfortran gfortran</span></span></div>
+<div style="font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">sudo </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">ln -s /usr/local/gcc-xxx/bin/cpp cpp</span></span></div>
+<div style="font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">sudo </span></span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">ln -s /usr/local/gcc-xxx/bin/g++ g++</span></span></div>
+<div style="font-size: 11px;">
+<div><span style="font-family: 'Andale Mono'; font-size: 7px;"> </span></div>
+<div><span style="font-size: 9px;">in your ~/.profile add</span><span style="font-size: 9px;"><span style="font-weight: bold; color: rgb(0, 113, 33);"> </span></span></div>
+<div><span style="font-size: 9px;"><span style="font-weight: bold;"><font color="#009051">export PATH=/usr/local/bin:$PATH</font></span></span></div>
+<div><span style="font-weight: bold;"><span style="font-size: 9px;"><font color="#009051">export LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH</font></span></span>
+<div style="font-size: 9px;">Then in terminal:</div>
+</div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">source ~/.profile</span></div>
+<div><span style="font-size: 9px;"> </span></div>
+<div><span style="font-size: 9px;">Then test in the terminal that you are calling the version you've just installed of gcc and gfortran</span></div>
+<span style="font-family: 'Andale Mono'; font-size: 9px;">$</span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;">  </span><span style="font-family: 'Andale Mono'; font-size: 9px;"> </span><span style="font-family: 'Andale Mono'; font-size: 9px;">cd ~</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt; gfortran --version</span> <span style="font-size: 7px;"><span style="font-family: 'Andale Mono';"> </span> it should be the same as</span><span style="font-size: 5px;">   </span> <span style="font-family: 'Andale Mono';">$&gt; /usr/local/gcc-xxx/bin/gfortran </span><span style="font-family: 'Andale Mono';">--version</span></div>
+<div><span style="font-family: 'Andale Mono'; font-size: 9px;">$&gt; gcc --version</span><span style="font-size: 9px;"> </span><span style="font-family: 'Andale Mono'; font-size: 5px;"> <span style="font-size: 7px; font-family: Arial;"><span style="font-family: 'Andale Mono';"> </span>it should be the same as</span>    </span><span style="font-family: 'Andale Mono'; font-size: 9px;">$&gt; /usr/local/gcc-xxx/bin/gcc --version<br clear="none"/></span>
+<div style="font-size: 11px;"><br/></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><font color="#945200">Note: </font></span></div>
+<div style="font-size: 11px;"><i style="color: rgb(148, 82, 0); font-size: 9px;">For mountain lion I had to copy the lib/ file from gcc-4.8 in the /usr/local/lib folder to get mpich 3.0.2 configured correctly</i><br/></div>
+<div style="font-size: 11px;"><br clear="none"/></div>
+<div style="font-size: 11px;">
+<hr/>
+<span style="font-size: 9px; color: rgb(255, 35, 35);"><br clear="none"/></span></div>
+<div style="text-align: right; font-size: 11px;"><span style="font-weight: bold;"><strong><span style="font-size: 16px;"><font color="#FF7E79">MPICH3 </font></span></strong></span></div>
+<div style="text-align: right; font-size: 11px;"><a shape="rect" href="http://www.mcs.anl.gov/research/projects/mpich2/" style="font-size: 9px;"><font color="#0096FF">http://www.mcs.anl.gov/research/projects/mpich3/</font></a></div>
+<div style="font-size: 11px;"><br clear="none"/></div>
+<div style="font-size: 11px;">
+<div>
+<div style="font-size: 9px;"><span style="font-family: Times;"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">tar -xvf mpich3-xxx.tar</span></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt; cd mpich3-xxx<br clear="none"/></span>
+<div><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="color: rgb(51, 51, 51); font-family: 'Andale Mono'; line-height: 12px; white-space: pre;">CC=gcc FC=gfortran CXX=g++</span><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> ./configure</span></span> <span style="color: rgb(51, 51, 51); font-family: 'Andale Mono'; line-height: 12px; white-space: pre;">--prefix=/usr/local/lecode/mpich</span> <span style="color: rgb(51, 51, 51); font-family: 'Andale Mono'; line-height: 12px; white-space: pre;">--enable-fast=all</span> <font face="Andale Mono">--enable-shared --enable-sharedlibs=osx-gcc</font></div>
+<span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">$</span></span>
+<div style="display: inline !important;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);"> make</span></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">$</span></span>
+<div style="display: inline !important;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);"> </span><span style="background-color: rgb(255, 255, 255);">sudo </span><span style="background-color: rgb(255, 255, 255);">make install</span></span></div>
+</div>
+<div><span style="font-family: 'Andale Mono'; font-size: 7px;"><span style="background-color: rgb(255, 255, 255);"> </span></span></div>
+<span style="font-size: 9px;">in your ~/.profile add</span><span style="font-size: 9px;"><span style="font-weight: bold; color: rgb(0, 113, 33);"> </span></span></div>
+<span style="font-size: 9px;"><b><font color="#009051">export MPI_DIR=/usr/local/lecode/mpich</font></b></span>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><b><font color="#009051">export PATH=$MPI_DIR/bin:$PATH</font></b></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><b><font color="#009051">export LD_LIBRARY_PATH=$MPI_DIR/lib:$LD_LIBRARY_PATH</font></b></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><b><font color="#009051">export DYLD_LIBRARY_PATH=$MPI_DIR/lib:$DYLD_LIBRARY_PATH</font></b></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><b><font color="#009051"><br/></font></b></span></div>
+<div style="font-size: 11px;">
+<div style="font-size: 9px;">Then in terminal:</div>
+<div style="font-size: 9px;"><span style="font-family: monospace; white-space: pre;"><span style="font-family: 'Andale Mono'; white-space: normal;">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">source ~/.profile</span></div>
+</div>
+<div style="font-size: 11px;"><br clear="none"/></div>
+<div style="font-size: 11px;"><span style="color: rgb(148, 82, 0); font-size: 9px;">Depreciate: </span><br clear="none"/></div>
+<div style="font-size: 11px;"><i style="color: rgb(148, 82, 0); font-size: 9px;">The following not required anymore but I had to change localhost in the /etc/hosts file by the name of the computer</i><br/></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><font color="#945200"><i>given by the following command hostname -s</i></font></span></div>
+<div style="font-size: 11px;"><font color="#945200"><i><span style="font-size: 9px;">Then set up</span> <span style="font-size: 9px;">mpd</span><span style="font-size: 9px;">. First, create a file in your home directory called .mpd.conf, </span></i></font></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><font color="#945200"><i>replacing &lt;secretword&gt; with a word known only to yourself that is different to your normal password, </i></font></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><font color="#945200"><i>by typing:</i></font></span></div>
+<div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">$</span></span>
+<div style="display: inline !important;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);"> c</span></span><span style="font-family: 'Andale Mono'; line-height: 13px; white-space: pre;">at &lt;&lt; EOF &gt;&gt; ~/.mpd.conf</span></div>
+<div style="font-size: 9px;">
+<div style="display: inline !important;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">   M</span></span></div>
+  <span style="font-family: 'Andale Mono'; line-height: 13px; white-space: pre;">PD_SECRETWORD=&lt;secretword&gt;</span><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);"> </span></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';"><span style="background-color: rgb(255, 255, 255);">   EOF</span></span></div>
+<div style="font-size: 11px;"><i style="color: rgb(148, 82, 0); font-size: 9px;">Make this file readable and writable only by you by typing:</i><br/></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt;  <span style="line-height: 13px; white-space: pre;">chmod 600 ~/.mpd.conf </span></span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono';"><font color="#945200"><span style="line-height: 13px; white-space: pre;"><br/></span></font></span></div>
+<div style="font-size: 12px;"><span style="line-height: 13px; white-space: pre;"><font size="1" style="font-size: 9px;">For Linux intel compiler</font></span></div>
+<pre style="padding: 5px; border: 0px; vertical-align: baseline; background-color: rgb(238, 238, 238); font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif; overflow: auto; max-height: 600px; word-wrap: normal; line-height: 18px; font-size: 11px;">
+<code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font size="1" style="font-size: 8px;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">export CC</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">icc
+export CXX</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">icpc
+export CPP</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(128, 0, 0);">'icc -E'</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">
+export CXXCPP</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(128, 0, 0);">'icpc -E'</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">
+export F77</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">ifort
+export FC</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">ifort
+export CFLAGS</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(128, 0, 0);">'-O3 -xHost -ip -no-prec-div -static-intel'</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">
+export CXXFLAGS</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(128, 0, 0);">'-O3 -xHost -ip -no-prec-div -static-intel'</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">
+export FFLAGS</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(128, 0, 0);">'-O3 -xHost -ip -no-prec-div -static-intel'</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">./</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">configure </span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">--</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">prefix</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">=/</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">usr</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">/</span><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent; color: rgb(0, 0, 139);">local/lecode/intel </span></span></font></code>
+</pre>
+<pre style="padding: 5px; border: 0px; vertical-align: baseline; background-color: rgb(238, 238, 238); font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif; overflow: auto; max-height: 600px; word-wrap: normal; line-height: 18px; font-size: 11px;">
+<code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><span style="font-size: 8px; white-space: normal;">make </span><font size="1" style="font-size: 8px;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;">
+make </span></span></font></code><span style="font-size: 8px; white-space: normal;">install</span>
+</pre>
+<div style="font-size: 11px;">
+<hr/>
+<br/>
+<div style="text-align: right;"><strong style="text-align: -webkit-auto;"><strong><font color="#FF7E79" style="font-size: 16px;">HDF5 </font></strong></strong></div>
+<div style="text-align: right;"><span style="font-size: 9px;"><a shape="rect" href="http://www.hdfgroup.org/HDF5/release/obtain5.html"><font color="#0096FF">http://www.hdfgroup.org/HDF5/release/obtain5.html</font></a><span style="color: rgb(255, 60, 54);"><strong><br clear="none"/></strong></span></span></div>
+<div><span style="color: rgb(255, 60, 54);"><strong style="font-size: 9px;"> </strong></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> </span><font face="Andale Mono">CC=/usr/local/lecode/mpich/bin/mpicc FC=/usr/local/</font><span style="font-family: 'Andale Mono';">lecode</span><span style="font-family: 'Andale Mono';">/mpich/bin/mpif90 ./configure --prefix=/usr/local/lecode/hdf_sgfm --enable-parallel --enable-fortran --enable-shared</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> </span><font face="Andale Mono">make</font></div>
+<div><span style="font-family: 'Andale Mono'; font-size: 9px;">$&gt;</span><span style="font-family: 'Andale Mono'; font-size: 9px;"> </span><font face="Andale Mono" style="font-size: 9px;">sudo make install</font><br clear="none"/>
+<div><span style="font-size: 10px;"><strong> </strong></span></div>
+<span style="font-size: 9px;">in your ~/.profile add<span style="font-weight: bold; color: rgb(0, 113, 33);"> </span></span></div>
+<div><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">export HDF5_DIR=/usr/local/lecode/</span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">hdf_sgfm</span><span style="font-weight: bold;"><font color="#007121"><span style="font-size: 9px;"><br clear="none"/></span></font><span style="font-size: 9px;"><font color="#009051">export PATH=$</font></span></span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">HDF5_DIR</span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">/bin:$PATH</span></div>
+<div><font color="#009051"><span style="font-weight: bold;"><span style="font-size: 9px;">export LD_LIBRARY_PATH=</span></span></font><span style="font-weight: bold;"><span style="font-size: 9px;"><font color="#009051">$</font></span></span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">HDF5_DIR</span><span style="font-size: 9px; font-weight: bold; color: rgb(0, 144, 81);">/lib:$LD_LIBRARY_PATH</span></div>
+<span style="color: rgb(0, 144, 81); font-weight: bold;"><span style="font-size: 9px;">export DYLD_LIBRARY_PATH=</span></span><span style="font-weight: bold;"><span style="font-size: 9px;"><font color="#009051">$</font></span></span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">HDF5_DIR</span><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;">/lib:$DYLD_LIBRARY_PATH</span></div>
+<div style="font-size: 11px;"><span style="color: rgb(0, 144, 81); font-size: 9px; font-weight: bold;"><br/></span></div>
+<div style="font-size: 11px;">
+<div style="font-size: 9px;">Then in terminal:</div>
+<font face="Andale Mono" style="font-size: 9px;">$</font>
+<div style="font-size: 9px; display: inline !important;"><font face="Andale Mono"><span style="background-color: rgb(255, 255, 255);">&gt;</span></font></div>
+<span style="font-size: 9px;"> </span><font face="Andale Mono" style="font-size: 9px;">  source ~/.profile</font></div>
+<div><span style="font-family: 'Andale Mono'; font-size: xx-small;"><span style="line-height: 13px; white-space: pre;"><br/></span></span></div>
+<div style="display: inline !important;">
+<div style="font-size: 11px; font-weight: bold;">
+<hr/>
+<br/></div>
+<div style="display: inline !important;">
+<div style="text-align: center; font-size: 11px;"><strong><strong><span style="font-size: 22px;"><font color="#009051">LECODE DEPENDENCIES </font></span></strong></strong><br/></div>
+</div>
+</div>
+</div>
+<div><br/>
+<hr/></div>
+<div><strong style="font-size: 11px;"> </strong></div>
+<div style="text-align: right; font-size: 11px;"><span style="font-weight: bold; font-size: 16px;"><strong><font color="#FF7E79">FOX </font></strong></span></div>
+<div style="text-align: right; font-size: 11px;"><a shape="rect" href="http://www1.gly.bris.ac.uk/~walker/FoX/source/" style="font-size: 9px;"><font color="#0096FF">http://www1.gly.bris.ac.uk/~walker/FoX/source/</font></a></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><br/></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Get one of the latest (&gt;4.0) full version</span></div>
+<div style="font-size: 11px;">
+<div style="font-family: Times; display: inline !important; font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$&gt;</span><span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">tar -xvf FoX-xxx.tar</span></span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> cd FoX-xxx</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">FCFLAGS='-O2' -fPIC </span><span style="font-family: 'Andale Mono';">FC = </span><span style="font-family: 'Andale Mono';">/usr/local/lecode/mpich3/bin/mpif90 </span><span style="font-family: 'Andale Mono';">./configure </span><span style="font-family: 'Andale Mono';">--prefix=/usr/local/</span><span style="font-family: 'Andale Mono';">lecode/</span><span style="font-family: 'Andale Mono';">FoX</span></div>
+<div style="font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> make </span></span></div>
+<div><span style="font-family: 'Andale Mono'; font-size: 9px;"><span style="background-color: rgb(255, 255, 255);">$</span></span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;">  </span><span style="font-family: 'Andale Mono'; font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"> sudo make install</span></span><br clear="none"/></div>
+<div><span style="font-family: 'Andale Mono';"> </span></div>
+</div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Then you will need to open the</span> <span style="font-family: 'Andale Mono'; font-size: 9px;">/usr/local/lecode/FoX-xxx/bin/FoX-config</span> <span style="font-size: 9px;">file</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt; sudo emacs </span><span style="font-family: 'Andale Mono';">/usr/local/lecode/FoX-xxx/bin/FoX-config</span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono'; font-size: 7px;"> </span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">And change the</span> <em style="font-size: 9px;">comp_prefix</em> <span style="font-size: 9px;">(third line) to the correct prefix and delete the</span> <span style="font-family: 'Andale Mono';">/objs</span> <span style="font-size: 9px;">at the end of the path, </span></div>
+<div style="font-size: 9px;">there is an issue in the FoX installation.</div>
+<div style="font-size: 9px;"> </div>
+<span style="font-size: 9px;">in your ~/.profile add</span><span style="font-size: 9px;"><span style="font-weight: bold; color: rgb(0, 113, 33);"> </span></span>
+<div style="font-size: 11px;"><font color="#009051"><span style="font-size: 9px;"><span style="font-weight: bold;">export PATH=/usr/local/</span></span><span style="font-size: 9px; font-weight: bold;">lecode/</span><span style="font-weight: bold; font-size: 9px;">FoX/bin:$PATH</span></font></div>
+<div style="font-size: 11px;"><font color="#009051"><span style="font-size: 9px;"><span style="font-weight: bold;">export LD_LIBRARY_PATH=/usr/local/</span></span><span style="font-size: 9px; font-weight: bold;">lecode/</span><span style="font-weight: bold; font-size: 9px;">FoX/lib:$LD_LIBRARY_PATH</span></font></div>
+<div style="font-size: 9px;"><br/></div>
+<div style="font-size: 9px;">Then in terminal:</div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono'; font-size: 9px;">$</span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;">  </span><span style="font-family: 'Andale Mono'; font-size: 9px;"> </span><span style="font-family: 'Andale Mono'; font-size: 9px;">source ~/.profile</span><span style="font-family: 'Andale Mono'; font-size: 7px;"><br clear="none"/></span></div>
+<div>
+<div style="font-size: medium;">
+<hr/></div>
+<div style="font-size: medium;"><strong style="font-size: 11px;"> </strong></div>
+<div style="font-size: 11px; text-align: right;"><span style="font-weight: bold; font-size: 16px;"><strong><font color="#FF7E79">KDTREE </font></strong></span></div>
+<div style="font-size: 9px; text-align: right;"><a href="https://github.com/jmhodges/kdtree2"><font color="#0096FF">https://github.com/jmhodges/kdtree2</font></a></div>
+<div style="font-size: 11px; text-align: right;"><br/></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Create a folder <b>kdtree2</b> on your desktop and </span><span style="font-size: 9px;">download kdtree.f90 and kdtree2.f90 files in the src-f90 folder from Github.</span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Then copy the lines below in a Makefile within the</span> <b style="font-size: 9px;">kdtree2</b> <span style="font-size: 9px;">folder.</span><br/></div>
+<div style="font-size: 11px;">
+<pre style="padding: 5px; border: 0px; vertical-align: baseline; background-color: rgb(238, 238, 238); font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif; overflow: auto; max-height: 600px; word-wrap: normal; line-height: 18px;">
+<code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;"><span style="font-size: 9px; font-family: 'Andale Mono'; line-height: normal; white-space: normal; background-color: transparent;"># KD_TREE2</span></span></font></code>
+</pre>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;"># For gfortran</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">#</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono"><span style="font-size: 9px;">FLAGSOPT= -O3 -funroll-loops --param max-unroll-times=2 -cpp -ftree-vectorize -ffast-math -lstdc++</span><br/></font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="font-size: 9px;"><font face="Andale Mono">F90=mpif90</font></span></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">#</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">FLAGS= ${FLAGSMACHINE} ${FLAGSALWAYS} ${FLAGSOPT}  </font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="font-size: 9px;"><font face="Andale Mono">MY_DIR=`basename ${PWD}`</font></span></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">all:     kdtree2_test kdtree_test </font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     ar -rcs libkdtree.a kdtree.o  kdtree2.o</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">kdtree2_test:     kdtree2.o</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     ${F90} ${FLAGS} -c kdtree2.o</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono"><span style="font-size: 9px;">kdtree_test:     kdtree.o</span><br/></font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     ${F90} ${FLAGS} -c kdtree.o</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono"><span style="font-size: 9px;">%.o :: %.f90</span><br/></font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     ${F90} ${FLAGS} -c $&lt;</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">tar:</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     cd ..; tar zcvf ${MY_DIR}.tgz ${MY_DIR}</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">clean:</font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font face="Andale Mono" style="font-size: 9px;">     /bin/rm -f *.o *.mod *.il  </font></font></code></div>
+<div><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="font-size: 9px;"><br/></span></font></code></div>
+<div><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="font-size: 9px;">Save and close the file and open the kdtree2.f90 file and change lines 22 and 23 to:</span></font></code></div>
+<div>
+<pre style="padding: 5px; border: 0px; vertical-align: baseline; background-color: rgb(238, 238, 238); font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif; overflow: auto; max-height: 600px; word-wrap: normal; line-height: 18px;"
+/>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;"><font face="Andale Mono" style="font-size: 9px;"><b>!</b>integer, parameter :: kdkind = sp</font></span></font></font></code></div>
+<div style="font-family: Arial; font-size: medium; line-height: normal; white-space: normal;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="padding: 0px; border: 0px; vertical-align: baseline; background-color: transparent;"><span style="font-family: 'Andale Mono'; font-size: 9px;">integer, parameter :: kdkind = dp</span></span></font></font></code></div>
+</div>
+<div><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="font-size: 9px;">to enable double precision.</span></font></font></code></div>
+<div><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="font-size: 9px;"><br/></span></font></font></code></div>
+<div><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="font-size: 9px;">In a terminal go to the folder location and compile the code</span><br/></font></font></code></div>
+</div>
+<div style="font-size: 11px;">
+<div style="font-size: 9px;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="font-family: 'Andale Mono';">$</span></font></font></code>
+<div style="font-family: Times; display: inline !important;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><font style="font-size: 8px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></font></font></code></div>
+<code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;">  <span style="font-family: 'Andale Mono';"> cd ~/Desktop/kdtree2</span></font></code></div>
+<div style="font-size: 9px;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><font style="font-size: 8px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span></font></code>
+<div style="font-family: Times; display: inline !important;"><code style="padding: 0px; border: 0px; vertical-align: baseline; font-family: Consolas, Menlo, Monaco, 'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono', 'Bitstream Vera Sans Mono', 'Courier New', monospace, serif;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></code></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> make </span></span><br/></div>
+<div><span style="font-family: 'Andale Mono';"> </span><br/></div>
+</div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Then you will need to move the folder to a place that will be pointed out within LECODE configuration file. The default is:</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$&gt; sudo mv ~/Desktop/kdtree2 </span><span style="font-family: 'Andale Mono';">/usr/local/lecode/kdtree2</span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono'; font-size: 7px;"> </span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono';"><br/></span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono';"><span><a href="LECODE%20dependencies.resources/kdtree2.zip">kdtree2.zip</a></span><br/></span></div>
+</div>
+<div style="font-size: 11px;">
+<hr/></div>
+<div style="text-align: right; font-size: 11px;"/>
+</div>
+<div>
+<div style="color: rgb(255, 60, 54); font-weight: bold; font-size: 11px;"><strong><span style="font-size: 9px;"><br clear="none"/></span></strong></div>
+<div style="text-align: right; font-size: 11px;"><strong><font color="#FF7E79" style="font-size: 16px;">TRIANGLE</font></strong></div>
+<div style="text-align: right; font-size: 9px;"><font color="#0096FF"><a shape="rect" href="http://www.cs.cmu.edu/~quake/triangle.html"><font color="#0096FF">http://www.cs.cmu.edu/~quake/triangle.html</font></a><a shape="rect" href="http://www.cs.cmu.edu/~quake/triangle.html"><br/></a></font></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><font color="#0096FF"> </font></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Using root privileges <strong>sudo</strong> move the <strong>triangle</strong> folder to /usr/local/.</span></div>
+<div style="font-size: 9px;">in terminal:</div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> sudo mv triangle.tar /usr/local/</span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';"> </span><span style="font-family: 'Andale Mono';">tar -xvf triangle.tar</span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono'; font-size: 8px;"> </span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">There are 3 things to do for making <strong>Triangle</strong> working in <strong>Tellus</strong>:</span></div>
+<ul style="font-size: 11px;">
+<li><span style="font-size: 9px;">First you will need to compile it with the Makefile do not use the '<em>make trilibrary</em>' command but simply '<em>make</em>'. It will produce the <em>./triangle</em> &amp; <em>./showme</em> binaries that could be useful. Do not use the -DLINUX switch for mac compilation.</span></li>
+<li><span style="font-size: 9px;">Then go within the <strong>triangle.c</strong> file and change the <em>main(int argc, char **argv)</em> &amp; <em>main(argc, argv)</em> at lines <span style="text-decoration: underline;">15682</span> &amp; <span style="text-decoration: underline;">15684</span> respectively to <em>many(int argc, char **argv)</em> &amp; <em>mainy(argc, argv)</em>. Just to prevent from having multiple <em>main</em> functions when linking to Tellus.</span></li>
+<li><span style="font-size: 9px;">Finally compile the changed file using: <strong>cc -O -DLINUX -I/usr/X11R6/include -L/usr/X11R6/lib -c -o ./triangle.o ./triangle.c</strong> or <strong> </strong><strong>cc ls</strong></span></li>
+</ul>
+<span style="font-size: 9px;">in your ~/.profile add<span style="font-weight: bold; color: rgb(0, 113, 33);"> </span></span>
+<div style="font-size: 11px;"><span style="font-size: 9px;"><span style="font-weight: bold; color: rgb(0, 113, 33);">export PATH=/usr/local/</span></span><span style="color: rgb(0, 113, 33); font-size: 9px; font-weight: bold;">lecode/</span><span style="color: rgb(0, 113, 33); font-weight: bold; font-size: 9px;">triangle:$PATH</span></div>
+<div>
+<div style="font-size: 9px;">Then in terminal:</div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="font-family: 'Andale Mono';">source ~/.profile</span></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono';"><br/></span></div>
+<div style="font-size: 11px;"><span style="font-size: 9px;">Finally do one of the following depending of your compiler (GNU or Intel):</span><span style="font-family: 'Andale Mono'; font-size: 7px;"> </span></div>
+<div style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <font face="Andale Mono">gcc -O3 -m64 -fno-common -fPIC -c -o triangle.o triangle.c <br/></font></div>
+<div style="font-size: 11px;"><span style="font-family: 'Andale Mono'; font-size: 9px;">$</span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;"> </span><span style="font-size: 9px;"> </span><font face="Andale Mono" style="font-size: 9px;">icc -O3 -m64 -fno-common -fPIC -c -o triangle.o triangle.c </font><span style="font-family: 'Andale Mono'; font-size: 7px;"><br/></span></div>
+<div style="display: inline !important;">
+<div><br/>
+<hr/></div>
+<div><strong style="font-size: 11px;"> </strong></div>
+<div style="text-align: center;"><b style="font-size: 21px;"><font color="#009051">Installing LECODE</font></b><br/></div>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align: center; font-weight: bold;"><span style="font-weight: normal;"><span style="font-family: 'Andale Mono'; font-size: xx-small;"><br/></span></span></div>
+<div style="font-weight: bold;">
+<hr/>
+<span style="font-weight: normal; font-size: 11px;"><br/></span></div>
+<div style="font-weight: bold; font-size: 11px;"><strong style="color: rgb(255, 60, 54); font-size: 9px;"> </strong></div>
+<div style="font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><font face="Andale Mono">$&gt; cd ~/workspace</font></span></div>
+<div style="font-size: 9px;">
+<div style="display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><font face="Andale Mono">$&gt; git clone</font></span></div>
+<font face="Andale Mono"><span style="font-size: 7px;"> </span><a href="https://tristan-salles@bitbucket.org/tristan-salles/sgfm.git">https://tristan-salles@bitbucket.org/tristan-salles/sgfm.git</a></font></div>
+<div style="font-size: 11px;">
+<div style="font-size: 9px;"><font face="Andale Mono">$</font>
+<div style="display: inline !important;"><font face="Andale Mono"><span style="background-color: rgb(255, 255, 255);">&gt;</span></font></div>
+  <font face="Andale Mono">cd sgfm/LECODE</font></div>
+<div style="font-size: 9px;"><font face="Andale Mono">$</font>
+<div style="display: inline !important;"><font face="Andale Mono"><span style="background-color: rgb(255, 255, 255);">&gt;</span></font></div>
+  <font face="Andale Mono">emacs config/Makefile.inc</font></div>
+<div><br/></div>
+<div><span style="font-size: 9px;">In the<font color="#FF7E79"> <strong>Makefile.inc</strong></font> you will need to specify the <span style="font-family: 'Andale Mono';">CFGFILE</span> (first line) depending on your system.</span></div>
+<div><span style="font-size: 9px;">Several examples of files (Makefile.cfg.osx &amp; Makefile.cfg.linux) are provided and should be</span><span style="font-size: 9px;"> changed according to </span><span style="font-size: 9px;">the previous dependencies installation.</span></div>
+<div><span style="font-family: 'Andale Mono'; font-size: 7px;"> </span><br/></div>
+<div><span style="font-size: 9px;">Once you have set the configuration parameters, run:</span></div>
+<div><span style="font-size: 9px;"><br/></span></div>
+<span style="background-color: rgb(255, 255, 255); font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;">  </span><span style="background-color: rgb(255, 255, 255); font-size: 9px;"><span style="font-family: 'Andale Mono';"> make clobber</span></span>
+<div style="font-size: 9px;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">$</span></span>
+<div style="font-family: Times; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+  <span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';"> make dist</span></span></div>
+<div><span style="background-color: rgb(255, 255, 255); font-size: 9px;"><br/></span></div>
+<div><span style="background-color: rgb(255, 255, 255); font-size: 9px;">It will create <strong>lecode</strong> distribution and a binary file located in the bin directory.</span></div>
+<div>
+<div><span style="font-size: 9px;"> </span></div>
+<div><span style="font-size: 9px;"><font color="#945200">Note:</font></span></div>
+<div><font color="#945200"><i><span style="font-size: 9px;">if you want to call lecode directly from a terminal you can add in your ~/.profile</span><span style="font-size: 9px;"><span style="font-weight: bold;"> </span></span></i></font></div>
+<font color="#945200"><i><span style="font-weight: bold;"><span style="font-size: 9px;">export PATH=</span></span><span style="font-size: 9px; font-weight: bold;">/lecode-install-dir/</span><span style="font-size: 9px; font-weight: bold;">bin:$PATH</span></i></font></div>
+<div><font color="#945200"><i><span style="font-size: 9px; font-weight: bold;">export DYLD_LIBRARY_PATH="/</span><span style="font-size: 9px; font-weight: bold;">lecode-install-dir</span><span style="font-size: 9px; font-weight: bold;">/build/lib:$DYLD_LIBRARY_PATH"</span><span style="font-weight: bold;"> </span><span style="font-size: 9px;">(mac OsX)</span></i></font></div>
+<font color="#945200"><i><span style="font-size: 9px; font-weight: bold;">export LD_LIBRARY_PATH=</span><span style="font-size: 9px; font-weight: bold;">/</span><span style="font-size: 9px; font-weight: bold;">lecode-install-dir</span><span style="font-size: 9px; font-weight: bold;">/build/lib</span><span style="font-size: 9px; font-weight: bold;">:$LD_LIBRARY_PATH</span> <span style="font-size: 9px;"> (Linux)</span></i></font></div>
+<div style="font-size: 9px;"><font color="#945200"><i>Then in terminal:</i></font></div>
+<div style="font-size: 9px;"><font color="#945200"><i><br/></i></font></div>
+<div><font style="font-size: 9px;"><span style="font-family: 'Andale Mono';">$</span></font>
+<div style="font-family: Times; font-size: 9px; display: inline !important;"><span style="background-color: rgb(255, 255, 255);"><span style="font-family: 'Andale Mono';">&gt;</span></span></div>
+<span style="font-size: 9px;"> </span><span style="font-size: 9px;"> </span><span style="font-family: 'Andale Mono'; font-size: 9px;"> </span><span style="font-family: 'Andale Mono'; font-size: 9px;">source ~/.profile</span><span style="font-family: 'Andale Mono'; font-size: xx-small;"><br style="font-size: 7px;"/>
+<br/></span></div>
+</body></html>

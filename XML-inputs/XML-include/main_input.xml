@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lecode:lecodeInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:lecode="http://subversion.assembla.com/svn/xsd/XSDlecode"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xsi:schemaLocation="http://subversion.assembla.com/svn/xsd/XSDlecode
+	http://subversion.assembla.com/svn/xsd/XSDlecode/LECODE.xsd">
+
+	<!-- Include files defining LECODE input definition 
+		
+		Note: All include files have to be in the same directory.
+	-->
+
+	<!-- Declaration of mesh and triangular network (TIN) parameters -->
+	<!-- Note: This structure is required -->
+	<xi:include href="meshtin.xml"/> 
+	
+	<!-- Declaration of simulation and processes time parameters -->
+	<!-- Note: This structure is required -->
+	<xi:include href="time.xml"/>  
+	
+	<!-- Declaration of ocean characteristics and hemipelagic processes -->
+	<!-- Note: This structure is required -->
+	<xi:include href="ocean_param.xml"/>  
+	
+	<!-- Declaration of vertical displacement rates -->
+	<!-- Note: This structure is optional -->
+	<xi:include href="geodynamic.xml"/> 
+	
+	<!-- Declaration of sediment types and their characteristics as well as
+	 initial deposit layer composition -->
+	<!-- Note: This structure is required --> 
+	<xi:include href="sediments.xml"/>
+	
+	<!-- Declaration of forcing processes such as rivers, rain, mass movements... -->
+	<!-- Note: This structure is required -->
+	<xi:include href="processes.xml"/> 
+	
+	<!-- Declaration of additional forcing processes parameters -->
+	<!-- Note: This structure is required -->
+	<xi:include href="processes_param.xml"/>
+	
+	<!-- Declaration of output information --> 
+	<!-- Note: This structure is required -->
+	<xi:include href="output_info.xml"/>
+	
+	<!-- Declaration of plugin parameters --> 
+	<!-- Note: This structure is optional -->
+	<xi:include href="plugins.xml"/>
+	
+</lecode:lecodeInput>

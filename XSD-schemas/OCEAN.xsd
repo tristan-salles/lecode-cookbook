@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:lecode="http://subversion.assembla.com/svn/xsd/XSDlecode"
+    targetNamespace="http://subversion.assembla.com/svn/xsd/XSDlecode">
+    <xsd:annotation>
+        <xsd:documentation>This schema documents LECODE Ocean's plugin input file structure for
+            version 2. If you use a XML parser, note that we defined a series of attributes 'unit'
+            for each physical property defined in the input file, the attribute default value
+            reflects the expected unit of measure for the property ('a','m', etc.)
+        </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="oceanInput">
+        <xsd:complexType>
+            <xsd:sequence>
+
+                <xsd:element name="TopoGrid">
+                    <xsd:annotation>
+                        <xsd:documentation>Simulation topographic grid parameters
+                            definition.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Grid" type="xsd:anyURI">
+                                <xsd:annotation>
+                                    <xsd:documentation>Path to the topotgraphic
+                                        file.</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="GridX" type="xsd:integer">
+                                <xsd:annotation>
+                                    <xsd:documentation>Number of nodes along the Ox
+                                        axis.</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="GridY" type="xsd:integer">
+                                <xsd:annotation>
+                                    <xsd:documentation>Number of nodes along Oy
+                                        axis.</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="GridSpace">
+                                <xsd:annotation>
+                                    <xsd:documentation>Regular grid spacing along the model edges,
+                                        expressed in metres.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="m"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="latGrid">
+                                <xsd:annotation>
+                                    <xsd:documentation>Mean latitude of the simulated
+                                        area.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="syncFolder" type="xsd:anyURI">
+                                <xsd:annotation>
+                                    <xsd:documentation>Synchronization folder between the plugin and
+                                        the SPM model.</xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="spmForcing">
+                                <xsd:annotation>
+                                    <xsd:documentation>Surface process plugin is enable if 1
+                                        otherwise 0.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="initDep">
+                                <xsd:annotation>
+                                    <xsd:documentation>In case there is no coupling with SPM provide
+                                        a initial deposition thickness.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="circForcing">
+                                <xsd:annotation>
+                                    <xsd:documentation>Ocean circulation is enable if 1 otherwise
+                                        0.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="waveForcing">
+                                <xsd:annotation>
+                                    <xsd:documentation>Wave induced currents is enable if 1
+                                        otherwise 0.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="contourForcing">
+                                <xsd:annotation>
+                                    <xsd:documentation>Contour current is enable if 1 otherwise
+                                        0.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="Time">
+                    <xsd:annotation>
+                        <xsd:documentation>Time control parameters definition. For the Simulation
+                            start and end time definition, use negative value to represent time
+                            before present. For example simulation ranging from 21 Ma to 19.6 Ma
+                            should have start and end times set to -21000000.0 and -19600000.0
+                            respectively.</xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="startTime">
+                                <xsd:annotation>
+                                    <xsd:documentation>Defines the starting time of the experiment
+                                        (years)</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="a"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="endTime">
+                                <xsd:annotation>
+                                    <xsd:documentation>Defines the ending time of the experiment, in
+                                        years</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="a"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="syncTime">
+                                <xsd:annotation>
+                                    <xsd:documentation>Time use for synchronization with LECODE
+                                        model.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="a"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="outputTime">
+                                <xsd:annotation>
+                                    <xsd:documentation>Display time interval. This controls how
+                                        often results are outputed.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="a" use="optional"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element maxOccurs="1" minOccurs="0" name="CirculationParam">
+                    <xsd:annotation>
+                        <xsd:documentation>Ocean circulation parameters. </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="timeStep">
+                                <xsd:annotation>
+                                    <xsd:documentation>Time step use for wind induced circulation
+                                        computation in seconds.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="s"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="stormTime">
+                                <xsd:annotation>
+                                    <xsd:documentation>Time duration of average storm in
+                                        hours.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="h"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="fricCoef">
+                                <xsd:annotation>
+                                    <xsd:documentation>Bottom friction coefficient used in the
+                                        circulation module.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="filterStep">
+                                <xsd:annotation>
+                                    <xsd:documentation>Average velocity filtering
+                                        step.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element maxOccurs="1" minOccurs="0" name="ContouriteParam">
+                    <xsd:annotation>
+                        <xsd:documentation>Contour current. </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="topContour">
+                                <xsd:annotation>
+                                    <xsd:documentation>Contour top value in
+                                        metres.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="m"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="botContour">
+                                <xsd:annotation>
+                                    <xsd:documentation>Contour bottom value in
+                                        metres.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="m"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="meanVel">
+                                <xsd:annotation>
+                                    <xsd:documentation>Mean contour current
+                                        velocity.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="m/s"/>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="enteringBorder">
+                                <xsd:annotation>
+                                    <xsd:documentation>Index of contour current entering border it
+                                        could be 1, 2, 3 or 4. 1 is for South border, 2 for East, 3
+                                        for North and 4 for West.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="exitingBorder">
+                                <xsd:annotation>
+                                    <xsd:documentation>Index of contour current exiting border it
+                                        could be 1, 2, 3 or 4. 1 is for South border, 2 for East, 3
+                                        for North and 4 for West.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+
+                <xsd:element name="OceanForecast" maxOccurs="1" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation> Ocean forecast is used to define forcing winds through
+                            the simulation. </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="waveBase">
+                                <xsd:annotation>
+                                    <xsd:documentation>Sea depth above which sea bed is affected by
+                                        wave (typically 15 to 40m during
+                                        storms).</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element name="nbForecast">
+                                <xsd:annotation>
+                                    <xsd:documentation> Number of wave climate records processed
+                                        during the simulation time. For instance if different
+                                        statistical wave/wind regimes exist between summer and
+                                        winter seasons the user has the possibility to define
+                                        several seasonal wave/wind cycle that occur during the
+                                        considered time. The number of forecast regimes is constant
+                                        during the simulation which means that the user needs to
+                                        define for each wave/wind regimes interval the same number
+                                        of forecasts scenarios. </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:integer"> </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                            <xsd:element maxOccurs="unbounded" minOccurs="1" name="forecastClass">
+                                <xsd:annotation>
+                                    <xsd:documentation> Declaration of wind hindcast regime for each
+                                        forecast subgroup. The number of classes needs to be equal
+                                        to the number given for the 'nbForecast'
+                                        variable.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element minOccurs="1" maxOccurs="1" name="subgroupNb">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Number of subgroup forces defined
+                                                  for the considered forecast class.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:simpleType>
+                                                <xsd:list itemType="xsd:integer"/>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="1" name="start">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Starting time of the considered
+                                                  forecast in year. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="1" name="end">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Ending time of the considered
+                                                  forecast in year. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                            name="subgroupParam">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Wind subgroup regime parameter
+                                                  declaration for each considered hindcast period.
+                                                  Each element contains: [oc] Percentage of
+                                                  considered wind subgroup active over a year (in
+                                                  %). [vel] wind velocity at 10 m elevation (m/s).
+                                                  [wdir] wind direction at 10 m elevation (in
+                                                  degrees from Ox axis). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:simpleType>
+                                                <xsd:list itemType="xsd:decimal"/>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element maxOccurs="1" minOccurs="0" name="OutputDirectory" type="xsd:string"
+                    default="outputs">
+                    <xsd:annotation>
+                        <xsd:documentation> Name of the output directory. By default a folder called
+                            "outputs" will be created </xsd:documentation>
+                    </xsd:annotation>
+                </xsd:element>
+
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

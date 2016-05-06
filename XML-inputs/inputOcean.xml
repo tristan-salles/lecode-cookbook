@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ocean:oceanInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:ocean="http://subversion.assembla.com/svn/xsd/XSDlecode"
+  xsi:schemaLocation="http://subversion.assembla.com/svn/xsd/XSDlecode
+  http://subversion.assembla.com/svn/xsd/XSDlecode/OCEAN.xsd">
+  
+  <TopoGrid>
+    <Grid>data/gbrN.csv</Grid>
+    <GridX>330</GridX>
+    <GridY>330</GridY>
+    <GridSpace>500</GridSpace>
+    <latGrid>-45.</latGrid>
+    <syncFolder>synchro</syncFolder>
+    <spmForcing>0</spmForcing>
+    <initDep>200</initDep>
+    <circForcing>1</circForcing>
+    <waveForcing>1</waveForcing>
+    <contourForcing>0</contourForcing>
+  </TopoGrid>
+  
+  <Time>
+    <startTime>0</startTime>
+    <endTime>1</endTime>
+    <syncTime>1</syncTime>
+    <outputTime>500</outputTime>
+  </Time>
+  
+  <CirculationParam>
+    <timeStep>10.</timeStep>
+    <stormTime>24</stormTime>
+    <fricCoef>0.005</fricCoef>
+    <filterStep>2</filterStep>
+  </CirculationParam>
+  
+  <!--ContouriteParam>
+    <topContour>-1400.</topContour>
+    <botContour>-1800.</botContour>
+    <meanVel>0.2</meanVel>
+    <enteringBorder>1</enteringBorder>
+    <exitingBorder>3</exitingBorder>
+  </ContouriteParam-->
+  
+  <OceanForecast>
+    <waveBase>40.0</waveBase>
+    <nbForecast>2</nbForecast>
+    <forecastClass>
+      <subgroupNb>2</subgroupNb>
+      <start>0</start>
+      <end>1</end>
+      <subgroupParam>0.5 25.0 180.0</subgroupParam>
+      <subgroupParam>0.5 25.0 0.0</subgroupParam>
+    </forecastClass>
+    <forecastClass>
+      <subgroupNb>2</subgroupNb>
+      <start>1</start>
+      <end>2</end>
+      <subgroupParam>0.5 25.0 90.0</subgroupParam>
+      <subgroupParam>0.5 25.0 270.0</subgroupParam>
+    </forecastClass>
+  </OceanForecast>
+  
+  <OutputDirectory>outOcean3</OutputDirectory>
+  
+</ocean:oceanInput>

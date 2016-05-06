@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lecode:lecodeInput xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:lecode="http://subversion.assembla.com/svn/xsd/XSDlecode"
+  xmlns:xi="http://www.w3.org/2001/XInclude"
+  xsi:schemaLocation="http://subversion.assembla.com/svn/xsd/XSDlecode
+  http://subversion.assembla.com/svn/xsd/XSDlecode/LECODE.xsd">
+
+  <struct-Mesh-TIN>
+    <Strata_grid>
+      <StrataGrid>data/src2sk.nodes</StrataGrid>
+      <GridX>298</GridX>
+      <GridY>314</GridY>
+      <GridSpace>250</GridSpace>
+      <GridXo>1253250.0</GridXo>
+      <GridYo>5118000.0</GridYo>
+    </Strata_grid>
+
+    <TIN_refine>
+      <HighRes>250</HighRes>
+      <LowRes>500</LowRes>
+      <StepFill>0.001</StepFill>
+      <FlowAcc>60</FlowAcc>
+    </TIN_refine>
+
+    <Boundary>
+      <North>1</North>
+      <South>2</South>
+      <East>2</East>
+      <West>1</West>
+    </Boundary>
+  </struct-Mesh-TIN>
+
+  <struct-time>
+    <Time>
+      <startTime>0</startTime>
+      <endTime>500</endTime>
+      <layerTime>50</layerTime>
+      <outputTime>100</outputTime>
+      <riverInterval>25</riverInterval>
+      <rainInterval>25</rainInterval>
+      <SlopeInterval>25</SlopeInterval>
+      <samplingInterval>25</samplingInterval>
+    </Time>
+  </struct-time>
+
+  <struct-ocean>
+    <WaterDensities>
+      <enteringFluid>1.015E3</enteringFluid>
+      <seaDensity>1.027E3</seaDensity>
+    </WaterDensities>
+  </struct-ocean>
+
+  <struct-sediments>
+    <Materials>
+      <NbSiliciclastics>3</NbSiliciclastics>
+      <NbCarbonates>0</NbCarbonates>
+      <NbOrganics>0</NbOrganics>
+      <MinSlope>0.0001</MinSlope>
+      <si>
+        <MaterialName>Mat1</MaterialName>
+        <Diameter>0.1</Diameter>
+        <Density>2650.0</Density>
+        <SlopeMarine>0.041</SlopeMarine>
+        <SlopeAerial>0.0022</SlopeAerial>
+      </si>
+      <si>
+        <MaterialName>Mat2</MaterialName>
+        <Diameter>0.08</Diameter>
+        <Density>2650.0</Density>
+        <SlopeMarine>0.0405</SlopeMarine>
+        <SlopeAerial>0.0021</SlopeAerial>
+      </si>
+      <si>
+        <MaterialName>Mat3</MaterialName>
+        <Diameter>0.06</Diameter>
+        <Density>2650.0</Density>
+        <SlopeMarine>0.04</SlopeMarine>
+        <SlopeAerial>0.002</SlopeAerial>
+      </si>
+    </Materials>
+
+    <Init_deposit>
+      <LayersNb>1</LayersNb>
+      <dep>
+        <FileName>data/src2sk.dep</FileName>
+      </dep>
+    </Init_deposit>
+  </struct-sediments>
+
+  <struct-processes>
+    <StreamClass>
+      <NbClass>3</NbClass>
+      <cl>
+        <BedSlope>0.0</BedSlope>
+        <WDRatio>40</WDRatio>
+      </cl>
+      <cl>
+        <BedSlope>0.02</BedSlope>
+        <WDRatio>10</WDRatio>
+      </cl>
+      <cl>
+        <BedSlope>0.2</BedSlope>
+        <WDRatio>5</WDRatio>
+      </cl>
+    </StreamClass>
+
+    <RainfallGrid>
+      <rainFlowAccu>40</rainFlowAccu>
+      <rainMaxFW>200</rainMaxFW>
+      <rainElevation>1.0</rainElevation>
+      <rainCombination>0</rainCombination>
+      <rainStreamQ>0.5</rainStreamQ>
+      <nbRainfallInterval>1</nbRainfallInterval>
+      <rain>
+        <startTime>0</startTime>
+        <endTime>5000</endTime>
+        <rainFile>data/src2sk.rain</rainFile>
+      </rain>
+    </RainfallGrid>
+
+    <MassMovement>
+      <massFlowAccu>40</massFlowAccu>
+      <massCurvature>0.00</massCurvature>
+      <Aerial>
+        <upSlopeArea>2.5</upSlopeArea>
+        <belowUpSlope>
+          <steepnessIndex>0.31</steepnessIndex>
+          <concavityIndex>0.2</concavityIndex>
+        </belowUpSlope>
+        <aboveUpSlope>
+          <steepnessIndex>0.26</steepnessIndex>
+          <concavityIndex>0.</concavityIndex>
+        </aboveUpSlope>
+      </Aerial>
+      <Marine>
+        <upSlopeArea>0.1</upSlopeArea>
+        <belowUpSlope>
+          <steepnessIndex>0.31</steepnessIndex>
+          <concavityIndex>0.2</concavityIndex>
+        </belowUpSlope>
+        <aboveUpSlope>
+          <steepnessIndex>0.26</steepnessIndex>
+          <concavityIndex>0.</concavityIndex>
+        </aboveUpSlope>
+      </Marine>
+    </MassMovement>
+  </struct-processes>
+
+  <struct-param>
+    <SedimentTransportParameters>
+      <streamMinDepth>0.25</streamMinDepth>
+      <streamMaxDepth>10</streamMaxDepth>
+      <streamMinWidth>10</streamMinWidth>
+      <streamMaxWidth>800</streamMaxWidth>
+      <flowWalkerMinVelocity>0.0001</flowWalkerMinVelocity>
+      <flowWalkerErosionLimit>0.25</flowWalkerErosionLimit>
+      <flowWalkerDepositionLimit>0.5</flowWalkerDepositionLimit>
+      <minSedimentLoad>0.0000001</minSedimentLoad>
+      <maxFWStepPerCell>100</maxFWStepPerCell>
+    </SedimentTransportParameters>
+
+    <Manning>
+      <openchannelFlow>0.025</openchannelFlow>
+      <hyperpycnalFlow>0.012</hyperpycnalFlow>
+      <hypopycnalFlow>0.080</hypopycnalFlow>
+    </Manning>
+  </struct-param>
+
+  <struct-output>
+    <OutputDirectory>src2sk</OutputDirectory>
+
+    <OutputWaterLevel>1</OutputWaterLevel>
+  </struct-output>
+
+</lecode:lecodeInput>

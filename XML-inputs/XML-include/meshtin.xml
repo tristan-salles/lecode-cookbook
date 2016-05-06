@@ -1,0 +1,167 @@
+<!-- Definition of stratigraphic grid 
+	and flow computational grid (TIN) 
+-->
+<struct-Mesh-TIN>
+	
+	<!-- Stratigraphic grid parameters -->
+	<Strata_grid>
+		
+		<!-- Name of the basement node file and its path.
+			The path is from the main input file location. 
+			This ASCII file provides for each line the following information:
+				- node IDs
+				- X coordinates in metres (this axis has a West to East orientation)
+				- Y coordinates in metres (this axis has a South to West orientation)
+				- Z coordinates in metres
+			In addition the nodes should be defined in increasing order starting
+			from the Sout-West corner and going first along the X axis (West to East).
+		-->
+		<StrataGrid>data/gbr_N.nodes</StrataGrid>
+
+		<!-- Number of nodes along the X axis (West to East direction). 
+			It should conform with basement node file definition.
+		-->
+		<GridX>330</GridX>
+		
+		<!-- Number of nodes along the Y axis (South to West direction). 
+			It should conform with basement node file definition.
+		-->
+		<GridY>330</GridY>
+		
+		<!-- Grid spacing (in metres), defining the stratigraphic grid resolution.
+			It should conform with basement node file definition.
+		-->
+		<GridSpace unit="m">500</GridSpace>
+
+		<!-- South West corner X coordinate expressed in metres.
+			It should conform with basement node file definition.
+		-->
+		<GridXo unit="m">305250.0</GridXo>
+		
+		<!-- South West corner Y coordinate expressed in metres.
+			It should conform with basement node file definition.
+		-->
+		<GridYo unit="m">8220250.0</GridYo>
+		
+	</Strata_grid>
+	
+	<!-- Triangular Irregular Network (TIN) definition. 
+		The TIN is used to compute the flow surface evolution and is
+		automatically generated during simulation to ensure better resolution
+		calculation in places most subject to potential flow processes.
+	-->
+	<TIN_refine>
+		<!-- Highest resolution for the TIN in metres.
+			The value should be equal or higher than the stratigraphic grid
+			spacing defined above in parameter <GridSpace>. In addition this
+			value needs to be a multiple of the grid spacing.
+		-->
+		<HighRes unit="m">500</HighRes>
+		
+		<!-- Lowest resolution for the TIN in metres.
+			The value should be equal or higher than the highest resolution
+			defined above in parameter <HighRes>. In addition this
+			value needs to be a multiple of the grid spacing.
+		-->
+		<LowRes unit="m">1000</LowRes>
+		
+		<!-- Parameter used to fill all of the depressions on the stratigraphic 
+			grid topography and to remove the flat and hole areas. This is a 
+			pre-processing step used to ensure continuous flow from each grid 
+			cell. This parameter is an incremental step used during the depression 
+			filling process and is expressed in metres. 
+			
+			Note: in case the depression filling algorithm is not required for
+			your simulation set the value to 0.0. 
+			
+			Ref: Planchon, O., and F., Darboux (2001). A fast, simple and versatile 
+			algorithm to fill the depres- sions of digital elevation models. 
+			Catena, 46, 159–176.
+		-->
+		<StepFill unit="m">0.001</StepFill>
+		
+		<!-- Flow accumulation operation performs a cumulative count of the number 
+			of pixels that naturally drain into outlets. This operation is performed 
+			several time during the simulation to adjust and adapt the TIN grid 
+			resolution depending on the areas of highest flow accumulation values.
+			This parameter sets the minimum flow accumulation value over which the 
+			high resolution (parameter <HighRes> defined above) is used to generate
+			the TIN resolution. For areas with flow accumulation values below this 
+			parameter the <LowRes> parameter is used.
+			
+			Note: the minimum value for the flow accumulation is 1. 
+        -->
+		<FlowAcc>10</FlowAcc>
+		
+	</TIN_refine>
+	
+	<!-- Specify the model boundary types for the stratigraphic grid.
+		 For each border the following values could be set:
+		 	- 0 for infinite flat boundary, 
+		 	- 1 to insert a wall and prevent sediment transfert and fluid   
+		 		loss outside the simulated domain,
+		 	- 2 for extended slope. 
+	-->
+	<Boundary>
+		<!-- North boundary 
+		-->
+		<North>2</North>
+		
+		<!-- South boundary 
+		-->
+		<South>0</South>
+		
+		<!-- East boundary 
+		-->
+		<East>0</East>
+		
+		<!-- West boundary 
+		-->
+		<West>0</West>
+	
+	</Boundary>
+	
+	<!-- Control of the restart functionality. Model can be set 
+		to restart from a previous simulation step.
+		
+		Note: This element is optional and only required to perform
+		a simulation based on a previously simulation.
+	-->
+	<Restart>
+		
+		<!-- Name of the output folder from the previous run. 
+			
+			Note: it corresponds to the <OutputDirectory> parameter defined
+			in the previous XmL input file that needs to be restarted.
+		-->
+		<RestartFolder>path/to/previous/output/Folder</RestartFolder>
+		
+		<!-- The restart iteration number is informing the code on which file ID needs
+			to be ran from the previous simulations. Depending on how the <CheckPointing>
+			parameters were set (if set) the software is outputing a serie of checkpointing
+			files at given time steps (See <CheckPointing> parameter for additional definition).
+			These files are located in the runfiles directory under the folder specified in the
+			<RestartFolder> element above and are named "checkpoint.<RestartIt>.pID.h5" where 
+			<RestartIt> corresponds to a given <LayerTime> iteration number and pID to a given 
+			processor ID number
+			
+			Note: You will need to ensure that the restart iteration number corresponds to the 
+			<startTime> value of the simulation that you are currentlty defining. 
+			
+			Note: In case you did not set the <CheckPointing> parameter in the previous simulation
+			the code is generating the check pointing files just for the end of your previous run
+			which means that you should have only one <RestartIt> number and that the new simulation
+			<startTime> parameter will be equal to the <endTime> parameter of the previous one. 
+		-->
+		<RestartIt>40</RestartIt>
+		
+		<!-- Number of processors used in the last simulation. This number could be retreived by 
+			looking at the check pointing files located in the runfiles directory under the folder 
+			specified in the <RestartFolder> element above. The number will be equal to the biggest
+			ID of the checkpoint.<RestartIt>.pID.h5 file names plus 1.
+		-->
+		<ProcNb>2</ProcNb>
+		
+	</Restart>
+
+</struct-Mesh-TIN>

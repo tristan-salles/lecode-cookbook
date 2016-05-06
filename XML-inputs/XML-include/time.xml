@@ -1,0 +1,103 @@
+<!-- Definition of simulation and
+	processes time step.
+-->
+<struct-time>
+	
+	<!-- General time controlling parameters -->
+	<Time>
+		
+		<!-- Delaration of simulation starting time in years. 
+			
+			Note: the start time parameter accepts both positive and 
+				negative value to represent time before present.
+		-->
+		<startTime unit="a">-120000</startTime>
+		
+		<!-- Delaration of simulation ending time in years. Obviously, this 
+			value needs to be greater than the starting time one.
+			
+			Note: the end time parameter accepts both positive and 
+				negative value to represent time before present.
+		-->
+		<endTime unit="a">-110000</endTime>
+		
+		<!-- Sedimentary layers are recorded through time and each layer
+			corresponds to a specific time interval. This time interval 
+			is expressed in years. 
+			
+			Note: The smaller the layer time, the higher the temporal resolution
+			of the sedimentary record will be. However it will also impact the 
+			simulation computational time so compromise needs to be made.
+		-->
+		<layerTime unit="a">1000</layerTime>
+		
+		<!-- Time at which a new output is generated. The value should be at least 
+			equal to the layer time interval and could be set as a multiple of this 
+			parameter. In case of simulation creating large output files it is recommend 
+			to set this value to 4 or 5 times the <layerTime> one.
+			
+			Note: Consider increasing the output time interval to gain save some
+			computational time and space on your remote or local machine.
+		-->
+		<outputTime unit="a">2000</outputTime>
+		
+		<!-- Flow time sampling interval expressed in years. It controls how often
+			flow walkers are released from their sources. The sources are defined in
+			the <Sources> element and correspond to rivers or gravity currents flowing
+			within the simulation domain.
+			
+			Note: The value should be a factor of the layer time interval.
+				In case the simulation has no sources declared set this value to a large number.
+		-->
+		<riverInterval unit="a">250</riverInterval>
+		
+		<!-- Rain time sampling interval expressed in years. It controls how often
+			flow walkers are released from rainfall grid. The rainfall is defined in
+			the <RainfallGrid> element.
+			
+			Note: The value should be a factor of the layer time interval.
+				In case the simulation has no rain declared set this value to a large number.
+		-->
+		<rainInterval unit="a">500</rainInterval>
+		
+		<!-- Slope diffusion time sampling interval expressed in years. It controls how 
+			often slope diffusion algorithm is used to smooth top layer newly deposited
+			sediments. 
+			
+			Note: The value should be a factor of the layer time interval.
+		-->
+		<SlopeInterval unit="a">250</SlopeInterval>
+		
+		<!-- The sampling interval is expressed in years and controls how 
+			often sea level fluctuations, displacements are updated within the simulation.
+			
+			Note: The value should be a factor of the layer time interval.
+		-->
+		<samplingInterval unit="a">250</samplingInterval>
+		
+	</Time>
+	
+	<!-- The software is not able to restart a simulation from a given time step using the
+		output files generated. To make it possible the <CheckPointing> element needs to be 
+		set. This element enable the creation of a series of restarting files located in the  
+		runfiles directory under the folder specified in the <OutputDirectory> element. These 
+		files are named "checkpoint.tID.pID.h5" where tID corresponds to a particular time   
+		iteration step and pID to a given processor ID number.
+		
+		Note: This element is optional.
+		
+		Note: By default the code is going to generate a checkpoint file at the end of the
+		simulation.
+	-->
+	<CheckPointing>
+		
+		<!-- Frequency at which check pointing is performed. This integer is directly linked to the 
+			layer time interval element and corresponding simulation time for a given checkpoint file
+			is retreived by multiplying the frequency ID number (defined as tID in explanation above) 
+			by the layer time interval and by adding the simulation starting time.
+		-->	
+		<Frequency>10</Frequency>	
+	
+	</CheckPointing>
+
+</struct-time>

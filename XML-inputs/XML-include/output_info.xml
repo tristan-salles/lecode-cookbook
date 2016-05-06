@@ -1,0 +1,32 @@
+<!-- Definition of output information.
+-->
+<struct-output>
+	
+	<!-- Definition of the output directory where both simulation
+		results and runfiles will be stored.
+		The directory is divided in two sub-directories:
+			- one called "outputs" which record simulation output
+			- one called "runfiles" which record simulation informations
+			
+		Note: the "outputs" sub-directory contains time-series files that can be visualised
+			in Paraview or Visit for both the TIN grid, recorded stratigraphic mesh and flow walkers
+			evolution.
+		
+		Note: the "runfiles" sub-directory contains the checkpointing files required to restart 
+			a simulation.
+		
+		Note: to preserve previous runs, change the output directory name otherwise it will be
+			automatically rewritten and previous outputs will be lost.
+	-->
+	<OutputDirectory>outSPM</OutputDirectory>
+	
+	<!-- Sea-level fluctuations output control parameter. To save some space sea-level
+		fluctuations outputs can be turned on and off. The value for this element can be: 
+			- 0 meaning sea-level will not need to be visualised, 
+			- 1 meaning sea-level fluctuations will be outputed (this is the default value). 
+	
+		Note: This element is optional.
+	-->
+	<OutputWaterLevel>1</OutputWaterLevel>
+
+</struct-output>

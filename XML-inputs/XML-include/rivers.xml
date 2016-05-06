@@ -1,0 +1,127 @@
+<!-- Definition of river and turbidity flows transporting sediments within
+	the simulated domain. These flows will then erode and deposit sediments
+	depending of their internal characteristics.
+	
+	Note: This element is optional.
+-->
+<Sources>
+	
+	<!-- Total number of sources that will be activated within the domain
+		during the entire simulated time. 
+	-->
+	<totalSourcesNb>1</totalSourcesNb>
+	
+	<!-- Maximum sources depth. 
+		
+		Note: this element controls the number of flow walkers released per sources. 
+			If <maxDepth> is lower than <streamDepth> then the source will
+			be splitted in several flow walkers.
+	-->
+	<maxDepth unit="m">6</maxDepth>
+	
+	<!-- Collection of parameters defining each source. 
+		
+        Note: the number of <sourceVal> needs to be equal to the number given 
+        	in the <totalSourcesNb> element. 
+	-->
+	<sourceVal>
+		
+		<!-- Source start time in years. 
+		-->
+		<ts unit="a">-128000</ts>
+		
+		<!-- Source end time in years. 
+		-->
+		<te unit="a">10000</te>
+		
+		<!-- Percentage of time the considered flow is active over a year.
+			
+			Note: values are between 0 and 100. 
+		-->
+		<recurencePerc>75.0</recurencePerc>
+		
+		<!-- Source location along Ox within the simulated domain space (m). 
+			
+			Note: The simulation will crash if the location of the source
+				is outside the simulation domain.
+		-->
+		<x unit="m">310709.3</x>
+		
+		<!-- Source location along Oy within the simulated domain space (m). 
+			
+			Note: The simulation will crash if the location of the source
+				is outside the simulation domain.
+		-->
+		<y unit="m">8325284.0</y>
+		
+		<!-- X position of the source can randomly vary from its defined 
+			location. This element defined the maximum range along along Ox (m). 
+			
+			Note: Set the value to 0.0 to prevent any change of position along 
+				X direction.
+			
+			Note: The simulation will crash if when applying the random variation
+				the new source position is outside the simulation domain.
+		-->
+		<xRange unit="m">55</xRange>
+		
+		<!-- Y position of the source can randomly vary from its defined 
+			location. This element defined the maximum range along along Oy (m). 
+			
+			Note: Set the value to 0.0 to prevent any change of position along 
+				Y direction.
+			
+			Note: The simulation will crash if when applying the random variation
+				the new source position is outside the simulation domain.
+		-->
+		<yRange unit="m">32</yRange>
+		
+		<!-- Source height (m). 
+		
+			Note: Depending on the value sets for the <maxDepth> element the source 
+				might be splitted in several flow walkers.
+		-->
+		<streamDepth unit="m">6</streamDepth>
+		
+		<!-- Vx is the source velocity component along the
+			X direction (m/s). 
+			
+			Note: negative means towards West and positive towards East.
+		-->
+		<Vx unit="m/s">2.0</Vx>
+		
+		<!-- Vy is the source velocity component along the
+			Y direction (m/s). 
+			
+			Note: negative means towards South and positive towards North.
+		-->
+		<Vy unit="m/s">2.0</Vy>
+		
+		<!-- Water flux (m3/s). 
+		-->
+		<Q unit="m3/s">100</Q>
+		
+		<!-- Sediment discharge (Mt/year). 
+		-->
+		<Qs unit="Mt/a">0.07</Qs>
+		
+		<!-- Percentage of each siliciclastic sediments defined in the source. 
+			
+			Note: the sum of each percentage needs to be equal to 100.
+			
+			Note: this is a requirement to defined a percentage for each siliciclatic 
+				sediment defined in the <Materials> element and to follow the same order 
+				as the one used in the definition of the different siliclastic materials. 
+				If not the transported sediments will not be set properly.
+		-->
+		<sedConcentration>0 0 0 20 40 40 0</sedConcentration>
+		
+		<!-- Definition of the source type. Two choices are available:
+			- 0 for river stream and, 
+			- 1 for turbidity current.
+		-->
+		<flowType>0</flowType>
+		
+	</sourceVal>
+	
+</Sources>

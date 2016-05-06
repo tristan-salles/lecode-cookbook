@@ -1,0 +1,2639 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:lecode="http://subversion.assembla.com/svn/xsd/XSDlecode"
+    targetNamespace="http://subversion.assembla.com/svn/xsd/XSDlecode">
+    <xsd:import namespace="http://www.w3.org/2001/XInclude"
+        schemaLocation="http://www.w3.org/2001/XInclude.xsd"/>
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"
+        schemaLocation="http://www.w3.org/2001/03/xml.xsd"/>
+
+    <xsd:annotation>
+        <xsd:documentation>This schema documents LECODE's model input file structure for version 2.
+            If you use a XML parser, note that we defined a series of attributes 'unit' for each
+            physical property defined in the input file, the attribute default value reflects the
+            expected unit of measure for the property ('a','m', etc.) </xsd:documentation>
+    </xsd:annotation>
+
+    <xsd:element name="lecodeInput">
+        <xsd:complexType>
+            <xsd:sequence>
+
+                <xsd:element name="struct-Mesh-TIN" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> MESH - TIN PARAMETERS </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Strata_grid">
+                                <xsd:annotation>
+                                    <xsd:documentation>Stratigraphic mesh parameters
+                                        definition.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="StrataGrid" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Path to the stratal nodes'
+                                                  basement definition file, including the file name
+                                                  (.nodes).</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="GridX" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Number of nodes along the Ox
+                                                  axis.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="GridY" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Number of nodes along Oy
+                                                  axis.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="GridSpace">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Regular grid spacing along the
+                                                  model edges, expressed in
+                                                  metres.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:sequence>
+                                            <xsd:annotation>
+                                                <xsd:documentation>Absolute XY position of the
+                                                  bottom Left corner of the model box (SW
+                                                  corner).</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:element name="GridXo">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>South-West corner X0 absolute
+                                                  position and expressed in
+                                                  metres.</xsd:documentation>
+                                                </xsd:annotation>
+                                                <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                </xsd:complexType>
+                                            </xsd:element>
+                                            <xsd:element name="GridYo">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>South-West corner Y0 absolute
+                                                  position and expressed in
+                                                  metres.</xsd:documentation>
+                                                </xsd:annotation>
+                                                <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                </xsd:complexType>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                    </xsd:sequence>
+                                    <xsd:attribute ref="xml:base"/>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element name="TIN_refine">
+                                <xsd:annotation>
+                                    <xsd:documentation>Triangular irregular network (TIN) parameters
+                                        definition.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="HighRes">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Highest resolution on the TIN
+                                                  (m). Its value should not be higher than stratal
+                                                  mesh grid spacing.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="LowRes">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Lowest resolution on the TIN (m).
+                                                  Its value should be lower or equal to the HighRes.
+                                                  parameter.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="StepFill" default="0.01">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameter used to transform
+                                                  depressions into gentle slopes. A step fill is
+                                                  required between any cell and its lowest neighbor.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="FlowAcc" type="xsd:double" default="40">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Flow accumulation value (minimum
+                                                  1 ) over which refinement is performed.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="1" maxOccurs="1" name="Boundary">
+                                <xsd:annotation>
+                                    <xsd:documentation> Specify the model boundary types for the
+                                        stratal grid. 0 = flat boundary, 1 = insert a wall to
+                                        prevent sediment and fluid loss, 2 = extended slope.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="North" default="0">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:integer">
+                                                  <xsd:enumeration value="0">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>continous flat
+                                                  boundary</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>impermeable
+                                                  wall</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="2">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>extended local
+                                                  slope</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="South" default="0">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:integer">
+                                                  <xsd:enumeration value="0">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>continous flat
+                                                  boundary</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>impermeable
+                                                  wall</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="2">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>extended local
+                                                  slope</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="East" default="0">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:integer">
+                                                  <xsd:enumeration value="0">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>continous flat
+                                                  boundary</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>impermeable
+                                                  wall</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="2">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>extended local
+                                                  slope</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                        <xsd:element name="West" default="0">
+                                            <xsd:simpleType>
+                                                <xsd:restriction base="xsd:integer">
+                                                  <xsd:enumeration value="0">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>continous flat
+                                                  boundary</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>impermeable
+                                                  wall</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="2">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>extended local
+                                                  slope</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                </xsd:restriction>
+                                            </xsd:simpleType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="Restart">
+                                <xsd:annotation>
+                                    <xsd:documentation>Control of the restart functionality. Model
+                                        can be set to restart from a previous simulation step.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="RestartFolder" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Name of the previous check_point
+                                                  folder (this file is located in the previous
+                                                  output directory within the runfiles directory)
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="RestartIt" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Restart iteration number based
+                                                  on the checkpointing files in the previous runfile
+                                                  folder. </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="ProcNb" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Number of processors used in the
+                                                  previous run that you want to restart.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-time" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> TIME DECLARATION </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="Time">
+                                <xsd:annotation>
+                                    <xsd:documentation>Time control parameters definition. For the
+                                        Simulation start and end time definition, use negative value
+                                        to represent time before present. For example simulation
+                                        ranging from 21 Ma to 19.6 Ma should have start and end
+                                        times set to -21000000.0 and -19600000.0
+                                        respectively.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="startTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Defines the starting time of the
+                                                  experiment (years)</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="endTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Defines the ending time of the
+                                                  experiment, in years</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="layerTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Layer time interval controls how
+                                                  often a new deposit layer is
+                                                  created.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="outputTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Display time interval. This
+                                                  controls how often results are
+                                                  outputed.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="riverInterval">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Fluvial time sampling interval.
+                                                  This controls how often flow walkers are released
+                                                  from their sources. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="rainInterval">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Rainfall sampling interval. This
+                                                  controls how often rainfall is updated.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="SlopeInterval">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Slope time sampling interval.
+                                                  This controls how often slope diffusion is
+                                                  computed.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="samplingInterval">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Displacement and sea-level time
+                                                  sampling interval. This controls how often
+                                                  displacements and sea-level fluctuations are
+                                                  updated. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="CheckPointing">
+                                <xsd:annotation>
+                                    <xsd:documentation>Define when checkpointing is done. This is
+                                        used for restarting the simulation from a given time.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="Frequency">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Frequency for checkpointing.
+                                                  This has to be a
+                                                  multiple of the outputTime in the Time section.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:integer">
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-ocean" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> OCEAN PARAMETERS </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="SeaLevelFluctuations">
+                                <xsd:annotation>
+                                    <xsd:documentation>Sea-level fluctuations definition.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="SeaLevelFile" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Name of the sea-level
+                                                  fluctuations file (.sl file), time in years and
+                                                  sea-level in metres. </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="HemipelagicRates">
+                                <xsd:annotation>
+                                    <xsd:documentation>Sedimentation rates of hemipelagic particles.
+                                        You will need to define an hemipelagic material type with a
+                                        Material named "Hemi"</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="HemipelagicFile" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Name of the hemipelagic
+                                                  sedimentation rate file (.sl file). The file is
+                                                  composed of 2 columns one for the contour (in
+                                                  meters negative) and one for the rate
+                                                  (m/yr).</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element name="WaterDensities">
+                                <xsd:annotation>
+                                    <xsd:documentation>Water densities
+                                        definition.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="enteringFluid" default="1015.0">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Density of fresh water fluid
+                                                  entering the system (kg/m3). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="kg/m3"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="seaDensity" default="1027.0">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Density of sea density (kg/m3).
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="kg/m3"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-geodyn" maxOccurs="1" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation> GEODYNAMIC DECLARATION </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element maxOccurs="1" minOccurs="0" name="Displacement">
+                                <xsd:annotation>
+                                    <xsd:documentation> Definition of the displacement fields within
+                                        model. </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="nbDispInterval" type="xsd:integer"
+                                            default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Defines the number of
+                                                  displacement fields to be imported within the
+                                                  simulation.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded" name="disp">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Individual displacement
+                                                  definition. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="startDispTime">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the start time of the
+                                                  considered displacement interval in
+                                                  years.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="endDispTime">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the end time of the
+                                                  considered displacement interval in
+                                                  years.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="dispFile" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the displacement file name
+                                                  for the considered time interval in
+                                                  m.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-sediments" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> SEDIMENTS DEFINITION </xsd:documentation>
+                    </xsd:annotation>
+
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element minOccurs="1" maxOccurs="1" name="Materials">
+                                <xsd:annotation>
+                                    <xsd:documentation>Material definition parameters. Indicative
+                                        material size: pebble 4-64 mm, granule 2-4 mm, vcse 1-2 mm,
+                                        cse 0.5-1 mm, med 0.25-0.5 mm, fn 0.125-0.25, vfn
+                                        0.062-0.125 mm, slt 0.0039-0.062 mm, clay lower than 0.0039
+                                        mm. The definition of the material classes starts with the
+                                        declaration of the siliciclastics, then the carbonates and
+                                        finally the organics. For each 3 types of materials you need
+                                        to organise them by decreasing diametre
+                                        size.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence minOccurs="1" maxOccurs="1">
+                                        <xsd:sequence>
+                                            <xsd:element name="NbSiliciclastics" type="xsd:integer">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>Total number of
+                                                  siliciclastics</xsd:documentation>
+                                                </xsd:annotation>
+                                            </xsd:element>
+                                            <xsd:element name="NbCarbonates" type="xsd:integer">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>Total number of
+                                                  carbonates</xsd:documentation>
+                                                </xsd:annotation>
+                                            </xsd:element>
+                                            <xsd:element name="NbOrganics" type="xsd:integer">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>Total number of
+                                                  organics</xsd:documentation>
+                                                </xsd:annotation>
+                                            </xsd:element>
+                                            <xsd:element name="MinSlope" type="xsd:double"
+                                                default="0.0001">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>Minimum slope of deposited
+                                                  sediment taken into account for slope diffusion
+                                                  calculation. Below this threshold value, slope
+                                                  diffusion is not computed.</xsd:documentation>
+                                                </xsd:annotation>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="si">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for the
+                                                  considered siliciclastic
+                                                  material.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="MaterialName" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Unique name of the considered
+                                                  material</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Diameter">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>grain size diameter of the
+                                                  considered material (mm)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="mm"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Density">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Density of the considered
+                                                  material (kg/m3)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="kg/m3"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeMarine" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  marine environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeAerial" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  aerial environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="carb">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for the
+                                                  considered carbonate material.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="MaterialName" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Unique name of the considered
+                                                  material</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Diameter">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>grain size diameter of the
+                                                  considered material (mm)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="mm"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Density">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Density of the considered
+                                                  material (kg/m3)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="kg/m3"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeMarine" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  marine environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeAerial" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  aerial environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="0" maxOccurs="unbounded" name="org">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for the
+                                                  considered organic material.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="MaterialName" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Unique name of the considered
+                                                  material</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Diameter">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>grain size diameter of the
+                                                  considered material (mm)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="mm"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Density">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Density of the considered
+                                                  material (kg/m3)</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="kg/m3"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeMarine" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  marine environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="SlopeAerial" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Sediment deposit slope in
+                                                  aerial environment (dz/dx) </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="Init_deposit">
+                                <xsd:annotation>
+                                    <xsd:documentation>Sediment deposited prior to this run.
+                                        Sediment initailly deposited will be recorded anyway.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="LayersNb" type="xsd:integer" default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Defines the number of sedimentary
+                                                  layers initially imported within the
+                                                  simulation.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded" name="dep">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Considered deposit
+                                                  definition.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="FileName" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the deposit file name
+                                                  containing the considered layer. Files are sorted
+                                                  in increasing layer index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-processes" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> PROCESSES DECLARATION </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element minOccurs="1" maxOccurs="1" name="StreamClass">
+                                <xsd:annotation>
+                                    <xsd:documentation>Definition of the stream parameters by the
+                                        mean of the width to depth ratio for different
+                                        slopes.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence minOccurs="1" maxOccurs="1">
+                                        <xsd:sequence>
+                                            <xsd:element name="NbClass" type="xsd:integer">
+                                                <xsd:annotation>
+                                                  <xsd:documentation>Total number of stream
+                                                  class</xsd:documentation>
+                                                </xsd:annotation>
+                                            </xsd:element>
+                                        </xsd:sequence>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded" name="cl">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for the
+                                                  considered stream class.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element name="BedSlope" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the bed slope
+                                                  (dz/dx).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="WDRatio" type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Ratio of stream width on flow
+                                                  depth.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="Sources">
+                                <xsd:annotation>
+                                    <xsd:documentation>Define sediment sources
+                                        input</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="totalSourcesNb"
+                                            type="xsd:nonNegativeInteger" default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Total number of
+                                                  sources</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="maxDepth">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Maximum initial depth of river
+                                                  source</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                            name="sourceVal">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters definition for the
+                                                  considered source.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="ts">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source start time (years).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="te">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source end time (years).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="recurencePerc">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Recurrence interval percentage
+                                                  of defined flow characteristics over a year.
+                                                  Values should be between 0 and 100.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double"> </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="x">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source absolute location along
+                                                  Ox (m).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="y">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source absolute location along
+                                                  Oy (m).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="xRange">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source position range around x
+                                                  along Ox (m).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="yRange">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source position range around y
+                                                  along Oy (m).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="streamDepth">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Source height (m).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="Vx">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Vx is the source velocity
+                                                  component along the x direction (m/s).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="Vy">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Vy is the source velocity
+                                                  component along the y direction (m/s).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="Q">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Q is the source water flux
+                                                  (m3/s).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m3/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="Qs">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Sediment discharge
+                                                  (Mt/year).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="Mt/a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="sedConcentration">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Percentage of each
+                                                  siliciclastics sediments presents in the source.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:list itemType="xsd:decimal"/>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  <xsd:element name="flowType">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> 0=stream 1=turbidite.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:restriction base="xsd:integer">
+                                                  <xsd:enumeration value="0">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>stream</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="1">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>turbidite</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  </xsd:restriction>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute ref="xml:base"/>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <!--xsd:element minOccurs="0" maxOccurs="1" name="RainfallRegion">
+                    <xsd:annotation>
+                        <xsd:documentation> Define rainfall cyclicity by region, user specifies the
+                            rain pattern for different regions and at different times.
+                        </xsd:documentation>
+                    </xsd:annotation>
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="rainfallCyclicity" type="xsd:anyURI">
+                                <xsd:annotation>
+                                    <xsd:documentation> Rain file name, rain must be in (m/y)
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="rainMaxFW" type="xsd:double">
+                                <xsd:annotation>
+                                    <xsd:documentation> Maximum number of flow walkers released
+                                        per flow interval time. </xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+                            <xsd:element name="rainElevation">
+                                <xsd:annotation>
+                                    <xsd:documentation> Flow walkers height for the rain (m).
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:simpleContent>
+                                        <xsd:extension base="xsd:double">
+                                            <xsd:attribute name="unit" default="m" use="optional"
+                                            > </xsd:attribute>
+                                        </xsd:extension>
+                                    </xsd:simpleContent>
+                                </xsd:complexType>
+                            </xsd:element>
+                        </xsd:sequence>
+                    </xsd:complexType>
+                </xsd:element-->
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="RainfallGrid">
+                                <xsd:annotation>
+                                    <xsd:documentation> Define rainfall cyclicity by grid, user
+                                        specifies a grid based input file with rainfall value at
+                                        each nodes and for the entire simulation.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="rainFlowAccu" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum flow accumulation value
+                                                  used to define the flow walkers places.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="rainMaxFW" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum number of flow walkers
+                                                  released per flow interval time.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="rainElevation">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Flow walkers height for the rain
+                                                  (m). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="rainCombination" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Rain flow walkers combination is
+                                                  possible to create a river based on merging of
+                                                  several rain walkers. The option is 0 to forbid
+                                                  any combination to occur. To enable the option put
+                                                  1 instead.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="rainStreamQ">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Water flux used when rain walker
+                                                  combination is enable to define the minimal flow
+                                                  rate required to consider the combined rain
+                                                  walkers as a river walker. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m3/s"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="nbRainfallInterval" type="xsd:integer"
+                                            default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Defines the number of rainfall
+                                                  grid initially imported within the
+                                                  simulation.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded" name="rain">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters definition for the
+                                                  concidered rain interval.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="startTime">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the start time of the
+                                                  considered rainfall grid interval in
+                                                  years.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="endTime">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Give the end time of the
+                                                  considered rainfall grid interval in
+                                                  years.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="rainFile" type="xsd:string">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Define the rainfall grid file
+                                                  name for the considered time
+                                                  interval.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="MassMovement">
+                                <xsd:annotation>
+                                    <xsd:documentation>Parameter defining mass movement, also known
+                                        as slope movement or mass wasting. It encompasses the
+                                        following types of: landslides, slumps, debris flows. In
+                                        LECODE, mass movement susceptibility map is derived from
+                                        emprical relationships based on surface of the upslope
+                                        contributing area and slope. The relation is function of 2
+                                        additional parameters: the steepness index and the concavity
+                                        index. Example of such relation can be found in several
+                                        litterature papers such as Horton et al. (2008), Blahut et
+                                        al. (2010) or Kappes et al. (2011). </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence minOccurs="1" maxOccurs="1">
+                                        <xsd:element name="massFlowAccu" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Flow accumulation threshold under
+                                                  which no mass movements can be initiated.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="massCurvature" type="xsd:double">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Plan curvature threshold over
+                                                  which no mass movements can be initiated. For
+                                                  example, in western Switzerland, Horton et al.
+                                                  (2013) found an optimum at -0.02 per metre. Fisher
+                                                  et al. (2012) considered values of -0.015 to
+                                                  -0.005 as more accurate for Norway. This threshold
+                                                  is expected to vary with the location and the type
+                                                  of mass flows, and strongly depends on the grid
+                                                  resolution and accuracy. </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="1" name="Aerial">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for aerial
+                                                  mass movement.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="upSlopeArea">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Surface of the upslope
+                                                  contributing area (km2).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="km2"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="belowUpSlope">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters collection for area
+                                                  below the upslope contributing
+                                                  area.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element name="steepnessIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the steepness
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="concavityIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the concavity
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="aboveUpSlope">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters collection for area
+                                                  above the upslope contributing
+                                                  area.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element name="steepnessIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the steepness
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="concavityIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the concavity
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="1" name="Marine">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters collection for marine
+                                                  mass movement.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="upSlopeArea">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Surface of the upslope
+                                                  contributing area (km2).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="km2"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="belowUpSlope">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters collection for area
+                                                  below the upslope contributing
+                                                  area.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element name="steepnessIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the steepness
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="concavityIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the concavity
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="aboveUpSlope">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters collection for area
+                                                  above the upslope contributing
+                                                  area.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence minOccurs="1" maxOccurs="1">
+                                                  <xsd:element name="steepnessIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the steepness
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  <xsd:element name="concavityIndex"
+                                                  type="xsd:double">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Value of the concavity
+                                                  index.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <!--xsd:element maxOccurs="1" minOccurs="0" name="Plume">
+                                <xsd:annotation>
+                                    <xsd:documentation>Define plume parameters used in case of
+                                        hypopycnal flow.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="riverMouth">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Average river mouth
+                                                  length.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="plumeLenght">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Maximum distance reached by river
+                                                  plume.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="oceanVx">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Ocean velocity along Ox
+                                                  direction.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="oceanVy">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Ocean velocity along Oy
+                                                  direction.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element-->
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="Carbonates-Organics">
+                                <xsd:annotation>
+                                    <xsd:documentation>Define fuzzy rules to calculate carbonates
+                                        and organics development.</xsd:documentation>
+                                </xsd:annotation>
+
+                                <xsd:complexType>
+                                    <xsd:sequence>
+
+                                        <xsd:element name="carborgTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Requested time step used to
+                                                  compute carbonates and organics evolution.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+
+                                        <xsd:element name="tempsalFile" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Path to the temperature and
+                                                  salinity definition file, time in years,
+                                                  temperature in Celcius and salinity in ppm
+                                                  .</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+
+                                        <xsd:element name="membershipfunctionNb"
+                                            type="xsd:nonNegativeInteger" default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Total number of membership
+                                                  functions</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="fuzzyfunctionNb"
+                                            type="xsd:nonNegativeInteger" default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Total number of fuzzy logic
+                                                  functions</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="fuzzyruleNb"
+                                            type="xsd:nonNegativeInteger" default="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Total number of fuzzy logic
+                                                  rules</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                            name="membershipFunction">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters definition for the
+                                                  considered membership
+                                                  function.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="functionName">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>User defined membership
+                                                  function name. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:string"> </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="functionVariable">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Default variable name to set
+                                                  up. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:restriction base="xsd:string">
+                                                  <xsd:enumeration value="depth">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Water depth in metres.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="ocean-energy">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Wind-induced wave and currents
+                                                  circulation velocity in the area in m/s. You must
+                                                  have waves turn on. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="shore-distance">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Distance in metres to the
+                                                  shoreline. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="river-distance">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Distance to the nearest river
+                                                  source in metres. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="carbonate-distance">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Distance to nearest surface
+                                                  exposed carbonate. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="organic-distance">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Distance to nearest surface
+                                                  exposed organic. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="sedimentation-rate">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Sediment rate in metres per
+                                                  year. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="temperature">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Surface temperature in Celsius.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="salinity">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Degree of salinity in the
+                                                  system in ppm. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="valley">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The normalise number of
+                                                  surrounding points uphill from the reference point
+                                                  (calclated from all grid points within two grid
+                                                  cells): -1 = all points downhill, 1 = all points
+                                                  uphill [-1,1]. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="gradient">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>The average gradient of the
+                                                  point (calculated from all grid points within two
+                                                  grid cells) negative value indicates that most
+                                                  surrounding points are downhill from the
+                                                  point.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="exposed-time">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Time the layer has been
+                                                  undisturbed on the surface in years.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="burial">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Depth to which the material has
+                                                  been buried by subsequent deposits in metres
+                                                  (affects material subsurface).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="age">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Time since the layer was
+                                                  deposited in years (affects material subsurface).
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  </xsd:restriction>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  <xsd:element name="functionPts">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Number of points describing
+                                                  the shape of the membership function.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:nonNegativeInteger">
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="functionSubset">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters definition for the
+                                                  considered membership
+                                                  function.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence>
+                                                  <xsd:element minOccurs="2" maxOccurs="unbounded"
+                                                  name="xypoints">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Function coordinates values. Y
+                                                  coordinates must be between 0 and 1.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:list itemType="xsd:decimal"/>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                            name="fuzzyFunction">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters definition for the
+                                                  considered fuzzy function.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="fuzzyName">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>User defined fuzzy logic
+                                                  function name. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:string"> </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="fuzzyVariable">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Default variable name to set up
+                                                  fuzzy logic function. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:restriction base="xsd:string">
+                                                  <xsd:enumeration value="growth">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Function controlling carbonates
+                                                  or organics growth rate in metres per years.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="erosion">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Function controlling carbonates
+                                                  or organics erosion rate in metres per years.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="porosity">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Function controlling carbonates
+                                                  or organics porosity between 0 and 1.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  <xsd:enumeration value="hardness">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Function controlling carbonates
+                                                  or organics hardness ( &gt; 1 ).</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  </xsd:enumeration>
+                                                  </xsd:restriction>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  <xsd:element name="fuzzyPts">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Number of points describing
+                                                  the shape of the fuzzy logic function.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:nonNegativeInteger">
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="fuzzySubset">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Parameters definition for the
+                                                  considered fuzzy logic
+                                                  function.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence>
+                                                  <xsd:element minOccurs="2" maxOccurs="unbounded"
+                                                  name="xycoords">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Fuzzy function coordinates
+                                                  values. Y coordinates must be between 0 and 1.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:list itemType="xsd:decimal"/>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                            name="fuzzyRule">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Parameters definition for the
+                                                  considered fuzzy rule.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="matName">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Name of the carbonate or
+                                                  organic type defined in the material element.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:string"> </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="fuzzyFctName">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Previously user defined fuzzy
+                                                  logic function name to be used with the considered
+                                                  material. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:string"> </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="variableNb">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Number of membership functions
+                                                  describing the fuzzy rule. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:nonNegativeInteger">
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="membershipSet">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Membership function for the
+                                                  considered fuzzy rule
+                                                  function.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:sequence>
+                                                  <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                                  name="membershipFctName">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation> Previously user defined
+                                                  membership functions used to define the fuzzy
+                                                  rule.</xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:list itemType="xsd:string"/>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  </xsd:sequence>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute ref="xml:base"/>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-param" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> PROCESSES PARAMETERS </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+
+                            <xsd:element name="SedimentTransportParameters">
+                                <xsd:annotation>
+                                    <xsd:documentation> Limiting factors for sediment transport.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="streamMinDepth">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Minimum depth for a stream in
+                                                  the simulation (m). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="streamMaxDepth">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum depth for a stream in
+                                                  the simulation (m). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="streamMinWidth">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Minimum width for a stream in
+                                                  the simulation (m). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="streamMaxWidth">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum width for a stream in
+                                                  the simulation (m). </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="flowWalkerMinVelocity">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Minimum velocity of flow walkers
+                                                  (m/s). When a flow walker velocity decreases below
+                                                  this threshold value, all sediment load is
+                                                  deposited and the flow walker disappears.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m/s"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="flowWalkerErosionLimit">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum eroded thickness at each
+                                                  flow computation step (m) </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="flowWalkerDepositionLimit">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Factor controlling maximum
+                                                  deposition thickness based on flow
+                                                  height.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"> </xsd:attribute>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="minSedimentLoad">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Minimum sediment load threshold
+                                                  under which the flow walker is erased from the
+                                                  simulation based on sediment discharge threshold
+                                                  in millions of tons per year. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="t/a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="maxFWStepPerCell" type="xsd:integer">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Maximum authorised number of
+                                                  iteration a flow walker can remain in a given cell
+                                                  before forcing it to die. Value ranges between 100
+                                                  and 400.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element name="Manning">
+                                <xsd:annotation>
+                                    <xsd:documentation>Manning's coefficients</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="openchannelFlow" type="xsd:double"
+                                            default="0.020">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Coefficient for open-channel
+                                                  flow.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="hyperpycnalFlow" type="xsd:double"
+                                            default="0.010">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Coefficient for hyperpycnal
+                                                  flow.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="hypopycnalFlow" type="xsd:double"
+                                            default="0.070">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Coefficient for hypopycnal
+                                                  flow.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="Porosity">
+                                <xsd:annotation>
+                                    <xsd:documentation>Porosity function definition.
+                                    </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="EffPressureNb" type="xsd:integer"
+                                            minOccurs="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Effective pressure number
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="PorosityFile" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Porosity table file
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-output" maxOccurs="1" minOccurs="1">
+                    <xsd:annotation>
+                        <xsd:documentation> OUTPUTS SECTION </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+                            <xsd:element name="OutputDirectory" type="xsd:string" default="outputs">
+                                <xsd:annotation>
+                                    <xsd:documentation> Name of the output directory. By default a
+                                        folder called "outputs" will be created </xsd:documentation>
+                                </xsd:annotation>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="OutputWaterLevel"
+                                default="1">
+                                <xsd:annotation>
+                                    <xsd:documentation>Sea level output control parameter. 0 means
+                                        sea level files do not need to be visualised, otherwise 1
+                                        (Default is 1 ). </xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:simpleType>
+                                    <xsd:restriction base="xsd:integer">
+                                        <xsd:enumeration value="0">
+                                            <xsd:annotation>
+                                                <xsd:documentation>No sea level
+                                                  output</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:enumeration>
+                                        <xsd:enumeration value="1">
+                                            <xsd:annotation>
+                                                <xsd:documentation>with sea level
+                                                  output</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:enumeration>
+                                    </xsd:restriction>
+                                </xsd:simpleType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+
+                <xsd:element name="struct-plugin" maxOccurs="1" minOccurs="0">
+                    <xsd:annotation>
+                        <xsd:documentation> PLUGIN SECTION </xsd:documentation>
+                    </xsd:annotation>
+
+                    <xsd:complexType>
+                        <xsd:sequence>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="SeismicLine">
+                                <xsd:annotation>
+                                    <xsd:documentation>Declaration of a 2D seismic line. The line
+                                        needs to be in X or Y direction and needs to be aligned with
+                                        the mesh gridding</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="Xmin">
+                                            <xsd:annotation>
+                                                <xsd:documentation>X min.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Xmax">
+                                            <xsd:annotation>
+                                                <xsd:documentation>X max.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Ymin">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Y min.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Ymax">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Y max.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="RMSModel">
+                                <xsd:annotation>
+                                    <xsd:documentation>Definition of the geocellular model
+                                        extension.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="Xmin">
+                                            <xsd:annotation>
+                                                <xsd:documentation>X min.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Xmax">
+                                            <xsd:annotation>
+                                                <xsd:documentation>X max.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Ymin">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Y min.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="Ymax">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Y max.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double">
+                                                        <xsd:attribute name="unit" default="m"
+                                                            use="optional"/>
+                                                    </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element minOccurs="0" maxOccurs="1" name="UnderworldPlugin">
+                                <xsd:annotation>
+                                    <xsd:documentation>Definition of the Underworld / LECODE plugin
+                                        simulation.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="UsyncFolder" type="xsd:anyURI">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Path to the synchronisation
+                                                  folder.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="UsyncTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Time for synchronisation of
+                                                  LECODE and Underworld.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                            <xsd:element maxOccurs="1" minOccurs="0" name="OceanPlugin">
+                                <xsd:annotation>
+                                    <xsd:documentation>Ocean plugin for waves and currents
+                                        circulation.</xsd:documentation>
+                                </xsd:annotation>
+                                <xsd:complexType>
+                                    <xsd:sequence>
+                                        <xsd:element name="circForcing">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Ocean circulation is enable if 1
+                                                  otherwise 0.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:integer">
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="waveForcing">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Wave induced currents is enable
+                                                  if 1 otherwise 0.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:integer">
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="OsyncFolder" type="xsd:string">
+                                            <xsd:annotation>
+                                                <xsd:documentation>Give the synchronization folder
+                                                  name.</xsd:documentation>
+                                            </xsd:annotation>
+                                        </xsd:element>
+                                        <xsd:element name="OsyncTime">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Synchronization time in years.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="morphLimit">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Morphological change thickness
+                                                  limiter. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="m"
+                                                  use="optional"/>
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="morphAc">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Morphological acceleration
+                                                    factor. Long-term morphological evolution is
+                                                    achieved using hydrodynamic calculations of only a
+                                                    fraction of the simulated duration. This need to
+                                                    be calibrated based on temporal and spatial
+                                                    resolution of the considered simulation. This
+                                                    parameter is used in relation to the Ocean plugin
+                                                    only. </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                    <xsd:extension base="xsd:double"> </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element name="nbForecast">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Number of wave climate records
+                                                  processed during the simulation time. For instance
+                                                  if different statistical wave/wind regimes exist
+                                                  between summer and winter seasons the user has the
+                                                  possibility to define several seasonal wave/wind
+                                                  cycle that occur during the considered time. The
+                                                  number of forecast regimes is constant during the
+                                                  simulation which means that the user needs to
+                                                  define for each wave/wind regimes interval the
+                                                  same number of forecasts scenarios.
+                                                </xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:integer">
+                                                  </xsd:extension>
+                                                </xsd:simpleContent>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                        <xsd:element maxOccurs="unbounded" minOccurs="1"
+                                            name="forecastClass">
+                                            <xsd:annotation>
+                                                <xsd:documentation> Declaration of wind hindcast
+                                                  regime for each forecast subgroup. The number of
+                                                  classes needs to be equal to the number given for
+                                                  the 'nbForecast' variable.</xsd:documentation>
+                                            </xsd:annotation>
+                                            <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="subgroupNb">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Number of subgroup forces
+                                                  defined for the considered forecast class.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:simpleType>
+                                                  <xsd:list itemType="xsd:integer"/>
+                                                  </xsd:simpleType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Ostart">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Starting time of the considered
+                                                  forecast in year. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="1"
+                                                  name="Oend">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Ending time of the considered
+                                                  forecast in year. </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  <xsd:attribute name="unit" default="a"/>
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element minOccurs="1" maxOccurs="unbounded"
+                                                  name="subgroupProp">
+                                                  <xsd:annotation>
+                                                  <xsd:documentation>Proportion of considered wind
+                                                  subgroup active over a year.
+                                                  </xsd:documentation>
+                                                  </xsd:annotation>
+                                                  <xsd:complexType>
+                                                  <xsd:simpleContent>
+                                                  <xsd:extension base="xsd:double">
+                                                  </xsd:extension>
+                                                  </xsd:simpleContent>
+                                                  </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                            </xsd:complexType>
+                                        </xsd:element>
+                                    </xsd:sequence>
+                                </xsd:complexType>
+                            </xsd:element>
+
+                        </xsd:sequence>
+                        <xsd:attribute ref="xml:base"/>
+                    </xsd:complexType>
+                </xsd:element>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>

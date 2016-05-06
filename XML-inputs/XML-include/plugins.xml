@@ -1,0 +1,223 @@
+<!-- Definition of elements to increase LECODE
+    modularity by interaction with other codes.
+    
+    Note: All the elements presented in this 
+        structure are optional. 
+-->
+<struct-plugin>
+    
+    <!-- Export of a 2D pseudo seismic section. The pseudo seismic section
+        records along the X or Y direction the sedimentary layer
+        characteristics.
+        
+        Two files are generated in the "runfiles" sub-directory of the output
+        directory (<OutputDirectory> element). 
+        The first one is the seismic data itself called "seismic.csv" and 
+        records:
+            - the position along the X or Y direction depending of the seismic 
+                line orientation,
+            - the layer top elevation,
+            - the mean grain size for the considered layer and,
+            - the average porosity for the considered layer.
+        
+        The second file represents the envelop of the seismic section and
+        is called "envelop.csv" it records for each stratigraphic grid nodes
+        present in the seismic line the top and bottom elevation.
+        
+        Note: the export is realised at the end of the simulation.
+        
+        Note: the section needs to be aligned with the mesh gridding
+    
+        Going beyond: These two files could then be further processed to create  
+            regularly spaced grid interpolating the seismic data values using 
+            Fatiando tools.
+            Scripts have been developed to make this conversion and could be 
+            provided if required.
+    -->
+    <SeismicLine>
+        
+        <!-- Seismic line minimum coordinate along X. 
+        -->
+        <Xmin unit="m">1000.0</Xmin>
+        
+        <!-- Seismic line maximum coordinate along X. 
+        -->
+        <Xmax unit="m">1000.0</Xmax>
+        
+        <!-- Seismic line minimum coordinate along Y. 
+        -->
+        <Ymin unit="m">30000.0</Ymin>
+        
+        <!-- Seismic line maximum coordinate along Y.
+        -->
+        <Ymax unit="m">50000.0</Ymax>
+   
+    </SeismicLine>
+    
+    <!-- Export of a geo-cellular box model defined by its X and Y minimum
+        and maximum coordinates. The geocellular model records for within
+        the defined box the sedimentary layers characteristics.
+        
+        The geo-cellular file is generated in the "runfiles" sub-directory of 
+        the output directory (<OutputDirectory> element). 
+        The file is called "geocellular.grdecl" and records:
+            - the coordinate of each sedimentary points within the box,
+            - the averaged porosity and,
+            - the proportion of each sediment types composing each 
+                sedimentary layer.
+        
+        Note: the export is realised at the end of the simulation.
+            
+        Note: the RMSModel plugin only works in serial.
+        
+        Note: the model can be used within a reservoir model and as been 
+            tested using RMS and Temis.
+    -->
+    <RMSModel>
+        
+        <!-- Geo-cellular model minimum coordinate along X (West border).
+        -->
+        <Xmin unit="m">200300</Xmin>
+        
+        <!-- Geo-cellular model maximum coordinate along X (East border).
+        -->
+        <Xmax unit="m">250300</Xmax>
+        
+        <!-- Geo-cellular model minimum coordinate along Y (South border).
+        -->
+        <Ymin unit="m">3928300</Ymin>
+        
+        <!-- Geo-cellular model maximum coordinate along Y (North border).
+        -->
+        <Ymax unit="m">4928300</Ymax>
+   
+    </RMSModel>
+    
+    <!-- This plugin enable the soft coupling between Underworld geodynamic
+        model and LECODE.
+        
+        To work the plugin requires that both Underworld and Lecode have been
+        compiled on the same machine. In Underworld specific input parameters
+        have to be turn on to enable the coupling.
+        
+        The communications between the codes are done at specific time steps and 
+        are driven by a file called 'maestro' localised in a synchronisation
+        folder known by the 2 codes.
+        
+        Lecode will provide to Underworld a VTK file containing top surface 
+        information ('topsurface.vtk'). 
+        Underworld will provide to Lecode an ASCII file containing vertical
+        displacement fields ('uw_output.ascii').
+        
+        Note: the plugin only looks at vertical displacements.
+    -->
+    <UnderworldPlugin>
+        
+        <!-- Path to the synchronisation folder used by each code to read and
+            write required coupling files.
+            The path is from the main input file location. 
+        -->
+        <UsyncFolder>udw_lecode</UsyncFolder>
+        
+        <!-- Time for synchronisation of LECODE and Underworld.
+        -->
+        <UsyncTime unit="a">500000</UsyncTime>
+        
+    </UnderworldPlugin>
+    
+    <!-- Ocean plugin for waves and currents circulation. This module
+        enable the coupling with CSIRO wave/current ocean circulation
+        code that could be provided if requested.
+        
+        The plugin allows the simulation of wind generated waves and
+        currents circulation for various climatic scenarios.
+        
+        Note: These elements need to be appropriately filled in relation
+            to what has been set up in the ocean code input file.
+    -->
+    <OceanPlugin>
+        
+        <!-- Calculation of wind induced ocean currents circulation is 
+            enable if the element is set to 1 (otherwise 0).
+        -->
+        <circForcing>1</circForcing>
+        
+        <!-- Calculation of wind generated wave currents is 
+            enable if the element is set to 1 (otherwise 0). 
+        -->
+        <waveForcing>1</waveForcing>
+        
+        <!-- Path to the synchronisation folder used by each code to read and
+            write required coupling files.
+            The path is from the main input file location. 
+        -->
+        <OsyncFolder>lecode_ocean</OsyncFolder>
+        
+        <!-- Time for synchronisation of LECODE and the Ocean code.
+        -->
+        <OsyncTime unit="a">500</OsyncTime>
+        
+        <!-- Maximum morphological change thickness for each ocean computation 
+            step in metres.
+			 
+			Note: This value could be set to a large number in case no limits 
+				are required regarding morphological change. 
+		--> 
+        <morphLimit unit="m">2.5</morphLimit>
+        
+        <!-- Morphological acceleration factor. Long-term morphological 
+			evolution is achieved using hydrodynamic calculations of only 
+			a fraction of the simulated duration. This need to be calibrated 
+			based on temporal and spatial resolution of the considered 
+			simulation. 
+		-->
+        <morphAc>500.0</morphAc>
+        
+        <!-- Number of wind climate classes defined during the simulation time. 
+        -->
+        <nbForecast>1</nbForecast>
+        
+        <!-- Collection of wind hindcast parameters for each forecast class. 
+            
+            Note: the number of classes needs to be equal to the number given 
+                in the <nbForecast> element. 
+        -->
+        <forecastClass>
+            <!-- Number of subgroup regime defined for the considered forecast 
+                class. 
+                
+                Note: this needs to match with the definition provided in the
+                    ocean code input file.
+            -->
+            <subgroupNb>1</subgroupNb>
+            
+            <!-- Starting time of the considered forecast in year. 
+                
+                Note: this needs to match with the definition provided in the
+                    ocean code input file.
+            -->
+            <Ostart unit="a">-120000</Ostart>
+            
+            <!-- Ending time of the considered forecast in year. 
+                
+                Note: this needs to match with the definition provided in the
+                    ocean code input file.
+            -->
+            <Oend unit="a">1000</Oend>
+            
+            <!-- Proportion of time a considered wind subgroup is active over a year. 
+                The subgroup parameters such as wind velocity and direction are provided 
+                in the ocean code input file.
+                
+                Note: the value for the element could not exceed 1. 
+                
+                Note: this needs to match with the definition provided in the
+                    ocean code input file.
+            -->
+            <subgroupProp>0.1</subgroupProp>
+            
+        </forecastClass>
+        
+    </OceanPlugin>
+
+</struct-plugin>

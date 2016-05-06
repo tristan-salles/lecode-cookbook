@@ -1,0 +1,238 @@
+<!-- Definition of carbonates and organics evolution within the simulated
+	domain. The evolution is based on fuzzy logic.
+	
+	Note: This element is optional.
+-->
+<Carbonates-Organics>
+	
+	<!-- Carbonates and organics evolution time interval expressed in years. 
+		
+		Note: The value should be a factor of the layer time interval.
+	-->
+	<carborgTime unit="a">250</carborgTime>
+	
+	<!-- Name of the salinity and temperature file and its associated path.
+		The path is from the main input file location. 
+		This ASCII file provides for each line the following information:
+			- time in years, 
+			- sea temperature for the considered time in Celcius and, 
+			- sea salinity for the considered time in ppm.
+
+		Note: In addition the defined times should be set in increasing
+			 order starting from the oldest time.
+	-->
+	<tempsalFile>data/temperature_salinity.csv</tempsalFile>
+	
+	<!-- Total number of membership functions.
+		A membership function allows to graphically represent a fuzzy set. 
+		The x-axis represents the values of a given variable, whereas the
+		y-axis represents the degrees of membership in the [0,1] interval.
+	-->
+	<membershipfunctionNb>1</membershipfunctionNb>
+	
+	<!-- Total number of fuzzy functions. 
+		In LECODE, a fuzzy function defined the evolution of carbonates / 
+		organics systems based on derived local prediction of their behaviours.
+	-->
+	<fuzzyfunctionNb>1</fuzzyfunctionNb>
+	
+	<!-- Total number of fuzzy rules. 
+		The fuzzy rules defined the "defuzzification" process from a set of
+		fuzzy and membership functions. It will produce for a specific 
+		carbonate / organic material a quantifiable results of its evolution
+		for a considered set of conditions.
+	-->
+	<fuzzyruleNb>1</fuzzyruleNb>
+	
+	<!-- Definition of the collection of membership	functions.
+		
+		Note: The number of membership functions should equal the number
+			provided in the <membershipfunctionNb> element.
+			
+		Note: Simple functions are used to build membership functions. 
+			Because we are defining fuzzy concepts, using more complex 
+			functions does not add more precision.
+	-->
+	<membershipFunction>
+		
+		<!-- User defined membership function name.
+			
+			This name in fuzzy logic is called a linguistic variable and is
+			used to facilitate the expression of fuzzy rules.
+		-->
+		<functionName>shallow</functionName>
+		
+		<!-- Default variable name to set up. 
+			
+			The user can choose between 14 default membership variable names listed below:
+				- "depth" : water depth in metres
+				- "shore-distance" : distance in metres to shoreline
+				- "river-distance" : distance in metres to nearest river source
+				- "carbonate-distance" : distance in metres to nearest surface exposed carbonate
+				- "organic-distance" : distance in metres to nearest surface exposed organic
+				- "sedimentation-rate" : sedimentation rate in metres per year
+				- "temperature" : surface temperature in Celsius
+				- "salinity" : degree of salinity in ppm
+				- "valley" : normalise number of surrounding points uphill from the reference 
+					point (calculated from all grid points within two grid cells): 
+						* -1 = all points downhill, 
+						*  1 = all points uphill [-1,1].
+				- "gradient" : average gradient of the point (calculated from all grid points 
+					within two grid cells) negative value indicates that most surrounding 
+					points are downhill from the point.
+				- "exposed-time" : time the layer has been undisturbed on the surface in years.
+				- "ocean-energy" : wind-induced wave and currents circulation velocity in the 
+					area in m/s. You must have the plugin <OceanPlugin> turns on.
+				- "burial" : depth to which the material has been buried by subsequent 
+					deposits in metres (affects material subsurface).
+				- "age" : time since the layer was deposited in years (affects material 
+					subsurface).
+		-->
+		<functionVariable>depth</functionVariable>
+		
+		<!-- Number of points describing the shape of the 
+			membership function. 
+			
+		-->
+		<functionPts>3</functionPts>
+		
+		<!-- Collection of points defining the membership function.
+			
+			Note: The number of membership function points should equal the 
+				number provided in the <functionPts> element.
+		-->
+		<functionSubset>
+			
+			<!-- Function coordinates values.  
+				- X corrdinates values refer to the values of one of 14
+				 	default variable names chosen above.
+				- Y coordinates must be between 0 and 1.
+			-->
+			<xypoints>0.0 0.0</xypoints>
+			
+			<!-- Function coordinates values.  
+				- X corrdinates values refer to the values of one of 14
+				 	default variable names chosen above.
+				- Y coordinates must be between 0 and 1.
+			-->
+			<xypoints>0.0 1.0</xypoints>
+			
+			<!-- Function coordinates values.  
+				- X corrdinates values refer to the values of one of 14
+				 	default variable names chosen above.
+				- Y coordinates must be between 0 and 1.
+			-->
+			<xypoints>25.0 0.0</xypoints>
+			
+		</functionSubset>
+		
+	</membershipFunction>
+	
+	<!-- Definition of the collection of fuzzy functions.
+		
+		Note: The number of fuzzy functions should equal the number
+			provided in the <fuzzyfunctionNb> element.
+			
+		Note: The fuzzy function defined the evolution of carbonates / 
+			organics based on derived local prediction of their behaviours.
+	-->
+	<fuzzyFunction>
+		
+		<!-- User defined fuzzy function name.
+			
+			This name in fuzzy logic is called a linguistic variable and is
+			used to facilitate the expression of fuzzy rules.
+		-->
+		<fuzzyName>slow_growth</fuzzyName>
+		
+		<!-- Default variable name to set up. 
+			
+			The user can choose between 4 default fuzzy function variable names listed below:
+				- "growth" : function controlling carbonates or organics growth rate 
+					in metres per years.
+				- "erosion" : function controlling carbonates or organics erosion rate 
+					in metres per years.
+				- "porosity" : function controlling carbonates or organics porosity 
+					reduction between 0 and 1.
+				- "hardness" : Function controlling carbonates or organics hardness 
+					( > 1 ).
+		-->
+		<fuzzyVariable>growth</fuzzyVariable> 
+		
+		<!-- Number of points describing the shape of the fuzzy logic 
+			function. 
+		-->
+		<fuzzyPts>2</fuzzyPts>
+		
+		<!-- Collection of points defining the fuzzy function.
+			
+			Note: The number of membership function points should equal the 
+				number provided in the <fuzzyPts> element.
+		-->
+		<fuzzySubset>
+			
+			<!-- Function coordinates values.  
+				- X corrdinates values refer to the values of one of 4
+				 	default variable names chosen above.
+				- Y coordinates must be between 0 and 1.
+			-->
+			<xycoords>0.0 0.0</xycoords>
+			
+			<!-- Function coordinates values.  
+				- X corrdinates values refer to the values of one of 4
+				 	default variable names chosen above.
+				- Y coordinates must be between 0 and 1.
+			-->
+			<xycoords>0.0005 1.0</xycoords>
+			
+		</fuzzySubset>
+		
+	</fuzzyFunction>
+	
+	<!-- Definition of the collection of fuzzy functions.
+		The fuzzy rules defined the "defuzzification" process from a set of
+		fuzzy and membership functions. 
+	-->
+	<fuzzyRule>
+		
+		<!-- Name of the carbonate or organic type defined in the <Materials> 
+			element. 
+			
+			Note: This is one of the name (<MaterialName>) defined in the <carb> or 
+			<org> element.
+		-->
+		<matName>car_sand</matName>
+		
+		<!-- Previously user defined fuzzy logic function name to be used 
+			with the considered material. 
+			
+			Note: This is one of the <fuzzyName> element.
+		-->
+		<fuzzyFctName>slow_growth</fuzzyFctName>
+		
+		<!-- Number of membership functions describing the fuzzy rule. 
+		-->
+		<variableNb>1</variableNb>
+		
+		<!-- Collection of membership functions used during the defuzzification
+			process.
+			
+				
+			Note: It will produce for the chosen carbonate / organic material a 
+				quantifiable results of its evolution.
+		-->
+		<membershipSet>
+			
+			<!-- User defined name <functionName> used to define membership
+            	functions. 
+            	
+				Note: The number of membership function element <membershipFctName> 
+					should equal the number provided in the <variableNb> element.
+			-->
+			<membershipFctName>shallow</membershipFctName>
+			
+		</membershipSet>
+		
+	</fuzzyRule> 
+	
+</Carbonates-Organics>

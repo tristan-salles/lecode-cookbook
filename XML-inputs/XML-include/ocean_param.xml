@@ -1,0 +1,55 @@
+<!-- Definition of ocean characteristics 
+	and hemipelagic processes.
+-->
+<struct-ocean>
+	
+	<!-- Declaration of the sea-level fluctuations.
+		
+		Note: This element is optional.
+	-->
+	<SeaLevelFluctuations>
+		<!-- Name of the sea-level fluctuations file and its associated path.
+			The path is from the main input file location. 
+			This ASCII file provides for each line the following information:
+				- time in years
+				- sea-level elevation for the considered time in metres
+			In addition the defined fluctuation times should be set in increasing 
+			order starting from the oldest time.
+		-->
+		<SeaLevelFile>data/sealevel.sl</SeaLevelFile>
+		
+	</SeaLevelFluctuations>
+	
+	<!-- Sedimentation rates of hemipelagic particles.
+		
+		Note: This element is optional.
+	-->
+	<HemipelagicRates>
+		<!-- Name of the hemipelagic rates file and its associated path.
+		The path is from the main input file location. 
+        This ASCII file provides for each line the following information:
+        	- contour elevation in metres relative to sea-level elevation (should be negative)
+        	- hemipelagic rates in metres per year for the considered contour line.
+        	
+        Note: To work correctly an hemipelagic material type is required in 
+        the <Material> element with the following Material named "Hemi".
+		-->
+		<HemipelagicFile>data/hemipelagic.rates</HemipelagicFile>
+	</HemipelagicRates>
+	
+	<!-- Water densities declaration
+	-->
+	<WaterDensities>
+		
+		<!-- Density of fresh water entering the system in kg/m3.
+			This is the density of rivers and rain particles.
+		-->
+		<enteringFluid unit="kg/m3">1.000E3</enteringFluid>
+		
+		<!-- Sea water density in kg/m3.
+		-->
+		<seaDensity unit="kg/m3">1.027E3</seaDensity>
+	
+	</WaterDensities>
+	
+</struct-ocean>

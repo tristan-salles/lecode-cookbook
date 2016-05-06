@@ -1,0 +1,130 @@
+<!-- Definition of additional processes parameters such as
+	flow walkers sediment transport controlling factors and
+	evoution of porosity and compaction in buried sedimentary 
+	layers. 
+-->
+<struct-param>
+
+	<!-- Controlling factors for flow walker and sediment
+		transport.
+	-->
+	<SedimentTransportParameters>
+		
+		<!-- Minimum depth for a river stream in the simulation in metres.
+		-->
+		<streamMinDepth unit="m">0.05</streamMinDepth>
+		
+		<!-- Maximum depth for a river stream in the simulation in metres.
+		-->
+		<streamMaxDepth unit="m">20</streamMaxDepth>
+		
+		<!-- Minimum width for a river stream in the simulation in metres.
+		-->
+		<streamMinWidth unit="m">1</streamMinWidth>
+		
+		<!-- Maximum width for a river stream in the simulation in metres.
+		-->
+		<streamMaxWidth unit="m">1000</streamMaxWidth>
+		
+		<!-- Minimum velocity of flow walkers (m/s) under which flow walkers
+			are supposed to have no influence on topography.
+			
+			Note: When a flow walker velocity decreases below this threshold value, 
+				all sediment load is forced to be deposited. 
+		-->
+		<flowWalkerMinVelocity unit="m/s">0.0001</flowWalkerMinVelocity>
+		
+		<!-- Maximum eroded thickness for each flow computation step in metres.
+			 
+			Note: This value could be set to a large number in case no limits 
+				are required regarding erosion thickness. 
+		--> 
+		<flowWalkerErosionLimit unit="m">0.25</flowWalkerErosionLimit>
+		
+		<!-- Maximum deposited thickness for each flow computation step in metres.
+			
+			Note: This value could be set to a large number in case no limits 
+				are required regarding deposition thickness. 
+		--> 
+		<flowWalkerDepositionLimit unit="m">0.25</flowWalkerDepositionLimit>
+		
+		<!-- Minimum sediment load threshold in tons per year under which flow walkers  
+			are supposed to have no influence on topography. Below this threshold, flow
+			walkers are erased from the simulation.
+		
+			Note: This value does not have to be modified for most of the simulations. 
+		--> 
+		<minSedimentLoad unit="t/a">0.000000000001</minSedimentLoad>
+		
+		<!-- Maximum authorised number of iterations a given flow walker can remain in a 
+			stratigraphic grid cell before deposition is forced. Possible values range 
+			between 100 and 400.
+		
+			Note: In flat area, flow walker velocity decreases and sediments are deposited. 
+				In some cases, the flow walker remains within a cell without really having
+				much influence on the topography. This parameter helps to speed up the flow 
+				walker computation process by forcing deposition after a given number of time
+				step. 
+		--> 
+		<maxFWStepPerCell>150</maxFWStepPerCell>
+	
+	</SedimentTransportParameters>
+
+	<!-- Bottom friction coefficient for flow walker is approximated using the approach  
+		of Manning combined with a Chezy’s type form for equation. The Manning’s 
+		roughness coefficient is required for different types of flows.  
+	-->
+	<Manning>
+		
+		<!-- Coefficient for open-channel flow. 
+		-->
+		<openchannelFlow>0.02</openchannelFlow>
+		
+		<!-- Coefficient for hyperpycnal flow. 
+		-->
+		<hyperpycnalFlow>0.01</hyperpycnalFlow>
+		
+		<!-- Coefficient for hypopycnal flow. 
+		-->
+		<hypopycnalFlow>0.080</hypopycnalFlow>
+		
+	</Manning>
+	
+	
+	<!-- The porosity changes and associated compaction of burial sedimentary layers 
+		is defined as a function of grain size and lithostatic pressure expressed in 
+		MPa (also called overburden or vertical pressure). 
+		
+		Note: This element is optional.
+	-->
+	<Porosity>
+		
+		<!-- Number of effective pressures used to defined the porosity evolution 
+			table. 
+		-->
+		<EffPressureNb>6</EffPressureNb>
+		
+		<!-- Name of the porosity look-up table file and its path.
+			The path is from the main input file location. 
+			
+			This ASCII file provides on its first line the effective pressure values
+			arranged by increasing order starting at 0 MPa on the surface. 
+			
+			Note: the lithostatic pressure gradient is usually assumed to be around 
+				25 MPa/km.
+			
+			Then follows one line for each sediment type defined in the <Materials>
+			element. Each line contains values of porosity of the considered sediment 
+			type for the given lithostatic pressure value provided on the first line. 
+			
+			Note: The lines should be ordered in the same way as the declaration of the 
+				<Materials>
+				
+			Note: The table forms a matrix with a number of columns equal to <EffPressureNb>
+				and a number of lines equal to the total number of materials plus 1.
+		-->
+		<PorosityFile>data/porosity.por</PorosityFile>
+		
+	</Porosity>
+
+</struct-param>

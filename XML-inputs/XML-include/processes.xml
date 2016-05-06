@@ -1,0 +1,290 @@
+<!-- Definition of the forcing processes such as rivers, rain, 
+	mass movements required to move sediments around and build
+	up the sedimentary architectures. 
+-->
+<struct-processes>
+
+	<!-- For each flow walker, the continuity equation is solved 
+		using a semi-empirical technique based on stream classification 
+		approach (Rosgen, 2003).
+		
+		Definition of the stream parameters is dependent of the type of
+		simulation which is set. The classification sets the width to depth
+		ratio based on specific slope angles. 
+ 	-->
+	<StreamClass>
+
+		<!-- Total number of stream classes required to define river 
+			characteristics over the simulated area.
+			
+			Note: the element variable should be equal or greater 
+				than 2.
+		-->
+		<NbClass>2</NbClass>
+
+		<!--  Parameters collection for the considered stream class.
+			
+            Note: the number of classes needs to be equal to the number given 
+                in the <NbClass> element. 
+		-->
+		<cl>
+
+			<!-- Value of the local topographic slope (dz/dx).
+			-->
+			<BedSlope>0.0</BedSlope>
+
+			<!-- Width to depth ratio for the considered slope. 
+			-->
+			<WDRatio>30</WDRatio>
+
+		</cl>
+
+		<!--  Parameters collection for the second stream class.
+		-->
+		<cl>
+
+			<!-- Value of the local topographic slope (dz/dx).
+			-->
+			<BedSlope>0.2</BedSlope>
+
+			<!-- Width to depth ratio for the considered slope. 
+			-->
+			<WDRatio>10</WDRatio>
+
+		</cl>
+
+	</StreamClass>
+
+	<!-- Declaration of sources. 
+		
+		Note: This element is optional.
+		
+		Note: if including a reference file to an already included file it is important
+			to add the address of XInclude in the element to prevent any unbounded element.
+	-->
+	<xi:include href="rivers.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+	<!-- Define rainfall parameters and regime, user specifies a serie of maps files
+    	  with rainfall values defined for each nodes.  
+        
+		Note: This element is optional.
+	-->
+	<RainfallGrid>
+		
+		<!-- Maximum flow accumulation value used to define the rain flow 
+			walkers places. 
+		
+			Note: Flow accumulation operation performs a cumulative   
+				count of the number of pixels that naturally drain 
+				into outlets.
+		-->
+		<rainFlowAccu>100</rainFlowAccu>
+		
+		<!-- Maximum number of rain flow walkers released per flow interval 
+			time. 
+		-->
+		<rainMaxFW>500</rainMaxFW>
+		
+		<!-- Flow walkers height for the rain in metres. 
+		-->
+		<rainElevation unit="m">1.5</rainElevation>
+		
+		<!--  Rain flow walkers combination is used to create a river based 
+			on merging of several rain flow walkers. 
+			
+			Note: The value is set to 0 to forbid any combination to occur and should be
+				set to 1 otherwise.
+			
+			Note: this option needs further testing.
+		-->
+		<rainCombination>0</rainCombination>
+		
+		<!-- Water flux used when rain walker combination is enable to define 
+			the minimal flow rate required to transformed the merged rain walkers as 
+			a river flow walker. 
+			
+			Note: this option is used only if the <rainCombination> is set to 1.
+		-->
+		<rainStreamQ unit="m3/s">0.5</rainStreamQ>
+		
+		<!-- Defines the number of rainfall serie imported for the considered
+	        simulation. 
+		-->
+		<nbRainfallInterval>1</nbRainfallInterval>
+		
+		<!-- Collection of rainfall parameters defining each rainfall series. 
+            
+            Note: the number of classes needs to be equal to the number given 
+                in the <nbRainfallInterval> element. 
+        -->
+		<rain>
+			<!-- Give the start time of the considered rainfall grid interval 
+				in years.
+			-->
+			<startTime unit="a">0</startTime>
+			
+			<!-- Give the end time of the considered rainfall grid interval 
+				in years.
+			-->
+			<endTime unit="a">1000000</endTime>
+			
+			<!-- Name of the rainfall file and its associated path.
+				The path is from the main input file location. 
+				This ASCII file provides for each line the following two informations:
+					- the node ID (which should match with one defined in the basement 
+						grid <StrataGrid>),
+					- the averaged precipitation for each considered node in metres/year.
+					
+				Note: the nodes have been defined in increasing order starting from the Sout-West
+				 	corner and going first along the X axis (West to East)
+				 	
+				Note: in case a specific node does not have any precipitation it is required
+					to set it in the file with a 0.0 value 
+			-->
+			<rainFile>data/ridge.rain</rainFile>
+			
+		</rain>
+		
+	</RainfallGrid>
+
+	<!-- Parameter defining mass movements. It encompasses the
+        following types of: 
+        	- landslides, 
+        	- slumps, 
+        	- debris flows. 
+        Mass movements susceptibility map is derived from
+        emprical relationships based on surface of the upslope
+        contributing area and slope. The relation is function of 2
+        additional parameters: 
+        	- the steepness index and, 
+        	- the concavity index.
+        
+        Note: Example of such relation can be found in several
+        litterature papers such as Horton et al. (2008), Blahut et
+        al. (2010) or Kappes et al. (2011).
+        
+		Note: This element is optional.
+	-->
+	<MassMovement>
+		
+		<!-- Flow accumulation threshold under which no mass movement 
+			can be initiated.
+		
+			Note: Flow accumulation operation performs a cumulative   
+				count of the number of pixels that naturally drain 
+				into outlets.
+		-->
+		<massFlowAccu>20</massFlowAccu>
+		
+		<!-- Plan curvature threshold over which no mass movements 
+			can be initiated. This threshold is expected to vary
+		 	with the location and the type of mass flows, and 
+		 	strongly depends on the grid resolution and accuracy.
+			
+			Note: in western Switzerland, Horton et al. (2013)
+		 		found an optimum at -0.02 per metre. Fisher et al.
+		 		(2012) considered values of -0.015 to -0.005 as more 
+		 		accurate for Norway. 
+		-->
+		<massCurvature>0.0</massCurvature>
+		
+		<!-- Parameters collection for aerial mass movement.
+		-->
+		<Aerial>
+			
+			<!-- Surface of the upslope contributing area (km2).
+				
+				Note: on a specific node, it corresponds to the product of
+					the flow accumulation and the stratigraphic grid cell 
+					area.
+			-->
+			<upSlopeArea unit="km2">2.5</upSlopeArea>
+			
+			<!-- Parameters collection for area below the upslope contributing
+            	area.
+			-->
+			<belowUpSlope>
+				
+				<!-- Value of the steepness index. 
+				-->
+				<steepnessIndex>0.31</steepnessIndex>
+				
+				<!-- Value of the concavity index. 
+				-->
+				<concavityIndex>0.2</concavityIndex>
+				
+			</belowUpSlope>
+			
+			<!-- Parameters collection for area above the upslope contributing
+            	area. 
+			-->
+			<aboveUpSlope>
+				
+				<!-- Value of the steepness index. 
+				-->
+				<steepnessIndex>0.26</steepnessIndex>
+				
+				<!-- Value of the concavity index. 
+				-->
+				<concavityIndex>0.</concavityIndex>
+				
+			</aboveUpSlope>
+			
+		</Aerial>
+		
+		<!-- Parameters collection for marine mass movement.
+		-->
+		<Marine>
+			
+			<!-- Surface of the upslope contributing area (km2).
+				
+				Note: on a specific node, it corresponds to the product of
+					the flow accumulation and the stratigraphic grid cell 
+					area.
+			-->
+			<upSlopeArea unit="km2">2.5</upSlopeArea>
+			
+			<!-- Parameters collection for area below the upslope contributing
+            	area.
+			-->
+			<belowUpSlope>
+				
+				<!-- Value of the steepness index. 
+				-->
+				<steepnessIndex>0.31</steepnessIndex>
+				
+				<!-- Value of the concavity index. 
+				-->
+				<concavityIndex>0.2</concavityIndex>
+				
+			</belowUpSlope>
+			
+			<!-- Parameters collection for area above the upslope contributing
+            	area. 
+			-->
+			<aboveUpSlope>
+				
+				<!-- Value of the steepness index. 
+				-->
+				<steepnessIndex>0.26</steepnessIndex>
+				
+				<!-- Value of the concavity index. 
+				-->
+				<concavityIndex>0.</concavityIndex>
+				
+			</aboveUpSlope>
+			
+		</Marine>
+		
+	</MassMovement>
+
+	<!-- Declaration of carbonates/organics evolution. 
+		
+		Note: This element is optional 
+		
+		Note: if including a reference file to an already included file it is important
+			to add the address of XInclude in the element to prevent any unbounded element.
+	-->
+	<xi:include href="carbfuzzy.xml" xmlns:xi="http://www.w3.org/2001/XInclude"/>
+
+</struct-processes>

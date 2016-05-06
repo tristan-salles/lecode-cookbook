@@ -1,0 +1,53 @@
+<!-- Definition of vertical displacement rates 
+	
+	Note: This structure is optional.
+-->
+<struct-geodyn>
+	
+	<!-- Definition of the vertical displacement fields within
+		simulated spatial and temporal domain. 
+	-->
+	<Displacement>
+	
+		<!-- Total number of displacement intervals that will be simulated. 
+			The displacement intervals need to be declared by increasing
+			time and should not overlap with each others.
+			
+			Note: this is not required to have the displacement start and end times 
+			continuous between each others or within the range of the sampling interval
+			values.
+		-->
+		<nbDispInterval>1</nbDispInterval>
+		
+		<!-- Definition of an individual displacement field. -->
+		<disp>
+		
+			<!-- Time in years at which the considered vertical displacement
+				will start.
+			-->
+			<startDispTime unit="a">-163000000</startDispTime>
+			
+			<!-- Time in years at which the considered vertical displacement
+				will end.
+			-->
+			<endDispTime unit="a">-150000001</endDispTime>
+			
+			<!-- Name of the displacement file and its associated path.
+				The path is from the main input file location. 
+				This ASCII file provides for each line the following information:
+					- the node ID (which should match with one defined in the basement grid <StrataGrid>)
+					- cumulative vertical displacement for each considered node in metres.
+
+				Attention: The file defines the cumulative displacement during the duration defined 
+					above and not a displacement rate.
+
+				Note: the nodes have been defined in increasing order starting from the Sout-West
+				 	corner and going first along the X axis (West to East)
+			-->
+			<dispFile>data/tectonic.disp</dispFile>
+		
+		</disp>
+	
+	</Displacement>
+	
+</struct-geodyn>
